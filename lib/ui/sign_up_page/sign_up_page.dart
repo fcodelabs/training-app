@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:faker/faker.dart';
 
 class SignInPage extends StatelessWidget {
   const SignInPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final Faker faker = Faker();
+
     return Container(
         padding: const EdgeInsets.all(20),
         height: 300,
@@ -28,7 +31,7 @@ class SignInPage extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
                 onPressed: () {
-
+                  String nickName = faker.person.name();
                 },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(
