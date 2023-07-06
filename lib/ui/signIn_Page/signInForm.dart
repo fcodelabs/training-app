@@ -113,14 +113,23 @@ class SignInForm extends StatelessWidget {
                                 ),
                               ),
                               onPressed: () {
-                                // Add logic for the second button here
+                                // Add logic for the button here
                               },
-                              child: const Text(
-                                'CONTINUE',
-                                style: TextStyle(
-                                  fontSize: 16.0,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  const Text(
+                                    'CONTINUE  ',
+                                    style: TextStyle(
+                                      fontSize: 16.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  Image.asset(
+                                    'assets/images/right-arrow.png',
+                                    height: 40,
+                                  ),
+                                ],
                               ),
                             ),
                           ],
