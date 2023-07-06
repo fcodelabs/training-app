@@ -7,31 +7,55 @@ class SignInPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Faker faker = Faker();
+    late String nickName = '';
 
-    return Container(
-        padding: const EdgeInsets.all(20),
-        height: 300,
-        margin: const EdgeInsets.only(left: 10, right: 10),
-        decoration: const BoxDecoration(
-          color: Color.fromARGB(255, 255, 255, 255),
-          borderRadius: BorderRadius.all(Radius.circular(20)),
-        ),
-        child: Column(
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Text("Sign In"),
-            const SizedBox(height: 20),
-            const TextField(
-              decoration: InputDecoration(
-                labelText: 'Your Nickname',
-                border: OutlineInputBorder(),
+            Image.asset('assets/images/t2.jpg', width: 50, height: 50),
+            const Text(
+              '  Dear Diary',
+              style: TextStyle(
+                fontSize: 14,
+                color: Color.fromARGB(255, 255, 255, 255),
               ),
             ),
-            const SizedBox(height: 20),
-            ElevatedButton(
+          ],
+        ),
+        Container(
+          padding: const EdgeInsets.all(20),
+          height: 300,
+          margin: const EdgeInsets.only(left: 10, right: 10, top: 20),
+          decoration: const BoxDecoration(
+            color: Color.fromARGB(255, 255, 255, 255),
+            borderRadius: BorderRadius.all(Radius.circular(20)),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Text(
+                "Sign In",
+                style: TextStyle(
+                  fontSize: 40,
+                  color: Color.fromARGB(255, 39, 115, 182),
+                ),
+              ),
+              const SizedBox(height: 20),
+              const TextField(
+                decoration: InputDecoration(
+                  labelText: 'Your Nickname',
+                  border: OutlineInputBorder(),
+                ),
+                // controller: TextEditingController(text: nickName),
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton(
                 onPressed: () {
-                  String nickName = faker.person.name();
+                  nickName = faker.person.name();
                 },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(
@@ -45,14 +69,13 @@ class SignInPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                child: const Text('RANDOM')),
-            Container(
-              width: double.infinity,
-              margin: const EdgeInsets.only(top: 30),
-              child: ElevatedButton(
-                  onPressed: () {
-                    // Perform sign-in logic here
-                  },
+                child: const Text('RANDOM'),
+              ),
+              Container(
+                width: double.infinity,
+                margin: const EdgeInsets.only(top: 30),
+                child: ElevatedButton(
+                  onPressed: () {},
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(
                         const Color.fromARGB(255, 39, 115, 182)),
@@ -65,9 +88,13 @@ class SignInPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  child: const Text('CONTINUE')),
-            )
-          ],
-        ));
+                  child: const Text('CONTINUE'),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
   }
 }
