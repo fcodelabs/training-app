@@ -1,14 +1,29 @@
-import 'package:flutter/material.dart';
-import 'package:faker/faker.dart';
+import 'dart:math';
 
-class SignInPage extends StatelessWidget {
-  const SignInPage({super.key});
+import 'package:flutter/material.dart';
+
+class SignInPage extends StatefulWidget {
+  const SignInPage({Key? key}) : super(key: key);
+
+  @override
+  // ignore: library_private_types_in_public_api
+  _SignInPageState createState() => _SignInPageState();
+}
+
+class _SignInPageState extends State<SignInPage> {
+  String nickName = '';
+  final List<String> array = ['Name1', 'Name2', 'Name3', 'Name4', 'Name5'];
+
+  void setRandomNickname() {
+    setState(() {
+      final random = Random();
+      final randomIndex = random.nextInt(array.length);
+      nickName = array[randomIndex];
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    final Faker faker = Faker();
-    late String nickName = '';
-
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -45,17 +60,17 @@ class SignInPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20),
-              const TextField(
-                decoration: InputDecoration(
+              TextField(
+                decoration: const InputDecoration(
                   labelText: 'Your Nickname',
                   border: OutlineInputBorder(),
                 ),
-                // controller: TextEditingController(text: nickName),
+                controller: TextEditingController(text: nickName),
               ),
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
-                  nickName = faker.person.name();
+                  setRandomNickname();
                 },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(
