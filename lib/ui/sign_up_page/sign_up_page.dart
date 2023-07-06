@@ -12,13 +12,22 @@ class SignInPage extends StatefulWidget {
 
 class _SignInPageState extends State<SignInPage> {
   String nickName = '';
-  final List<String> array = ['Name1', 'Name2', 'Name3', 'Name4', 'Name5'];
+  final List<String> names = ['Name1', 'Name2', 'Name3', 'Name4', 'Name5'];
+  bool isEnable = false;
+  TextEditingController nicknameController = TextEditingController();
 
   void setRandomNickname() {
     setState(() {
       final random = Random();
-      final randomIndex = random.nextInt(array.length);
-      nickName = array[randomIndex];
+      final randomIndex = random.nextInt(names.length);
+      nicknameController.text = names[randomIndex];
+      isEnable = true;
+    });
+  }
+
+  void bindChangeEvent(String value) {
+    setState(() {
+      isEnable = nicknameController.text.isNotEmpty;
     });
   }
 
@@ -30,7 +39,7 @@ class _SignInPageState extends State<SignInPage> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('assets/images/t2.jpg', width: 50, height: 50),
+            Image.asset('assets/images/logo.png', width: 20, height: 20),
             const Text(
               '  Dear Diary',
               style: TextStyle(
@@ -65,7 +74,8 @@ class _SignInPageState extends State<SignInPage> {
                   labelText: 'Your Nickname',
                   border: OutlineInputBorder(),
                 ),
-                controller: TextEditingController(text: nickName),
+                controller: nicknameController,
+                onChanged: (value) => bindChangeEvent(value),
               ),
               const SizedBox(height: 20),
               ElevatedButton(
@@ -90,10 +100,16 @@ class _SignInPageState extends State<SignInPage> {
                 width: double.infinity,
                 margin: const EdgeInsets.only(top: 30),
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: isEnable ? () {} : null,
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(
-                        const Color.fromARGB(255, 39, 115, 182)),
+                    backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                      (Set<MaterialState> states) {
+                        if (states.contains(MaterialState.disabled)) {
+                          return const Color.fromARGB(255, 177, 173, 173);
+                        }
+                        return const Color.fromARGB(255, 30, 149, 246);
+                      },
+                    ),
                     padding: MaterialStateProperty.all(
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                     ),
@@ -103,7 +119,14 @@ class _SignInPageState extends State<SignInPage> {
                       ),
                     ),
                   ),
-                  child: const Text('CONTINUE'),
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('CONTINUE '),
+                      Icon(Icons.arrow_forward),
+                      SizedBox(width: 8),
+                    ],
+                  ),
                 ),
               ),
             ],
