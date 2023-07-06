@@ -45,16 +45,19 @@ class SignInForm extends StatelessWidget {
                           color: Colors.blue,
                           fontWeight: FontWeight.bold),
                     ),
-                    SizedBox(height: 20.0),
+                    SizedBox(height: 25.0),
                     TextField(
                       decoration: InputDecoration(
-                        labelText: 'Name',
-                        border: OutlineInputBorder(),
-                      ),
+                          hintText: 'Your Nickname*',
+                          border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10))),
+                          focusColor: Colors.grey),
                     ),
                     SizedBox(height: 16.0),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
+                          fixedSize: Size(120, 40),
                           shape: const RoundedRectangleBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(15)))),
@@ -63,12 +66,14 @@ class SignInForm extends StatelessWidget {
                       },
                       child: Text('RANDOM'),
                     ),
-                    SizedBox(height: 3.0),
+                    SizedBox(height: 16.0),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          shape: const RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(15)))),
+                        fixedSize: Size(320, 40),
+                        shape: const RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(15))),
+                      ),
                       onPressed: () {
                         // Add logic for the second button here
                       },
