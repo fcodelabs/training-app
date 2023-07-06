@@ -1,8 +1,37 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'dart:ui';
 
-class SignInForm extends StatelessWidget {
-  const SignInForm({super.key});
+class SignScreen extends StatefulWidget {
+  const SignScreen({super.key});
+
+  @override
+  SignInForm createState() => SignInForm();
+}
+
+class SignInForm extends State<SignScreen> {
+  String randomName = '';
+
+  void generateRandomName() {
+    List<String> names = [
+      'John',
+      'Jane',
+      'Mike',
+      'Emily',
+      'David',
+      'Sarah',
+      'Mark',
+      'Jessica',
+      'Chris',
+      'Lisa'
+    ];
+    Random random = Random();
+    int index = random.nextInt(names.length);
+    setState(() {
+      randomName = names[index];
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -73,15 +102,18 @@ class SignInForm extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(height: 25.0),
-                            const TextField(
+                            TextField(
                               decoration: InputDecoration(
                                 hintText: 'Your Nickname*',
-                                border: OutlineInputBorder(
+                                border: const OutlineInputBorder(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(10)),
                                 ),
-                                hoverColor: Colors.grey,
+                                filled: true,
+                                fillColor: Colors.grey[200],
                               ),
+                              controller:
+                                  TextEditingController(text: randomName),
                             ),
                             const SizedBox(height: 16.0),
                             ElevatedButton(
@@ -92,9 +124,8 @@ class SignInForm extends StatelessWidget {
                                       BorderRadius.all(Radius.circular(15)),
                                 ),
                               ),
-                              onPressed: () {
-                                // Add logic for the first button here
-                              },
+                              onPressed: generateRandomName,
+                              // Add logic for the first button here
                               child: const Text(
                                 'RANDOM',
                                 style: TextStyle(
