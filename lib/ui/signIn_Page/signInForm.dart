@@ -3,6 +3,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'dart:ui';
 
+import '../diary_home_page/HomePage.dart';
+
 class SignScreen extends StatefulWidget {
   const SignScreen({super.key});
 
@@ -11,8 +13,8 @@ class SignScreen extends StatefulWidget {
 }
 
 class SignInForm extends State<SignScreen> {
-  String randomName = '';
-
+  final TextEditingController _textFieldController = TextEditingController();
+  bool isEnable = false;
   void generateRandomName() {
     List<String> names = [
       'John',
@@ -29,7 +31,14 @@ class SignInForm extends State<SignScreen> {
     Random random = Random();
     int index = random.nextInt(names.length);
     setState(() {
-      randomName = names[index];
+      _textFieldController.text = names[index];
+      isEnable = true;
+    });
+  }
+
+  void blindChangeEvent(vale) {
+    setState(() {
+      isEnable = _textFieldController.text.isNotEmpty;
     });
   }
 
@@ -103,6 +112,7 @@ class SignInForm extends State<SignScreen> {
                             ),
                             const SizedBox(height: 25.0),
                             TextField(
+                              onChanged: (value) => blindChangeEvent(value),
                               decoration: InputDecoration(
                                 hintText: 'Your Nickname*',
                                 border: const OutlineInputBorder(
@@ -113,7 +123,8 @@ class SignInForm extends State<SignScreen> {
                                 fillColor: Colors.grey[200],
                               ),
                               controller:
-                                  TextEditingController(text: randomName),
+                                  // TextEditingController(text: randomName)
+                                  _textFieldController,
                             ),
                             const SizedBox(height: 16.0),
                             ElevatedButton(
@@ -143,9 +154,20 @@ class SignInForm extends State<SignScreen> {
                                       BorderRadius.all(Radius.circular(15)),
                                 ),
                               ),
-                              onPressed: () {
-                                // Add logic for the button here
-                              },
+                              onPressed: isEnable
+                                  ? () {
+                                      String textFieldValue =
+                                          _textFieldController.text;
+
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              SecondScreen(textFieldValue),
+                                        ),
+                                      );
+                                    }
+                                  : null,
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
