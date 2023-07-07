@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class DiaryHomePage extends StatelessWidget {
-  final String nickName;
+  final String name;
 
-  const DiaryHomePage({Key? key, required this.nickName}) : super(key: key);
+  const DiaryHomePage({Key? key, required this.name}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class DiaryHomePage extends StatelessWidget {
         child: Column(
           children: [
             Text(
-              nickName,
+              name,
               style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -51,7 +51,7 @@ class DiaryHomePage extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => DiaryHomePage(nickName: nickName),
+                      builder: (context) => DiaryHomePage(name: name),
                     ),
                   );
                 },
@@ -73,13 +73,12 @@ class DiaryHomePage extends StatelessWidget {
                     ),
                   ),
                 ),
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text('SUBMIT '),
-                    Icon(Icons.arrow_forward),
-                    SizedBox(width: 8),
-                  ],
+                child: const Text(
+                  'SUBMIT',
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),

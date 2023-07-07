@@ -12,7 +12,7 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
-  String nickName = '';
+  String name = '';
   final List<String> names = ['Name1', 'Name2', 'Name3', 'Name4', 'Name5'];
   bool isEnable = false;
   TextEditingController nicknameController = TextEditingController();
@@ -22,7 +22,7 @@ class _SignInPageState extends State<SignInPage> {
       final random = Random();
       final randomIndex = random.nextInt(names.length);
       nicknameController.text = names[randomIndex];
-      nickName = nicknameController.text;
+      name = nicknameController.text;
       isEnable = true;
     });
   }
@@ -30,7 +30,7 @@ class _SignInPageState extends State<SignInPage> {
   void bindChangeEvent() {
     setState(() {
       isEnable = nicknameController.text.isNotEmpty;
-      nickName = nicknameController.text;
+      name = nicknameController.text;
     });
   }
 
@@ -108,8 +108,7 @@ class _SignInPageState extends State<SignInPage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) =>
-                                  DiaryHomePage(nickName: nickName),
+                              builder: (context) => DiaryHomePage(name: name),
                             ),
                           );
                         }
