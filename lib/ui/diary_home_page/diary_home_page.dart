@@ -12,35 +12,46 @@ class DiaryHomePage extends StatelessWidget {
         title: const Text('Dear Diary'),
       ),
       body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/background.jpg'),
+            fit: BoxFit.cover,
+          ),
+        ),
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
             Text(
               name,
               style: const TextStyle(
-                fontSize: 20,
+                fontSize: 40,
                 fontWeight: FontWeight.bold,
+                color: Color.fromARGB(255, 255, 255, 255),
               ),
             ),
             const SizedBox(height: 20),
             const TextField(
               decoration: InputDecoration(
                 labelText: 'Submit New',
-                border: OutlineInputBorder(
+                filled: true,
+                fillColor: Color.fromARGB(47, 43, 0, 255),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide.none,
                   borderRadius: BorderRadius.all(Radius.circular(40)),
                 ),
               ),
-              // controller: nicknameController,
-              // onChanged: (value) => bindChangeEvent(),
             ),
             const SizedBox(height: 20),
             const TextField(
-              maxLines: 5, // Set the maximum number of lines
+              maxLines: 5,
               decoration: InputDecoration(
-                labelText: 'Your Message',
-                border: OutlineInputBorder(
+                labelText: 'Enter Description',
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide.none,
                   borderRadius: BorderRadius.all(Radius.circular(20)),
                 ),
+                filled: true,
+                fillColor: Color.fromARGB(47, 43, 0, 255),
               ),
             ),
             Container(
