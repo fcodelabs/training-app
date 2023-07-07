@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'dart:ui';
 
 import '../diary_home_page/home_page.dart';
@@ -72,13 +73,18 @@ class SignInForm extends State<SignScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Image.asset('assets/images/blossom.png', height: 40),
-                        const Text(
+                        Text(
                           "  Dear Diary",
-                          style: TextStyle(fontSize: 20.0, color: Colors.white),
+                          style: GoogleFonts.ubuntu(
+                            textStyle: Theme.of(context).textTheme.displayLarge,
+                            fontSize: 20.0,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 16.0),
+                    const SizedBox(height: 10.0),
                     Center(
                       child: Container(
                         margin: const EdgeInsets.all(6.0),
@@ -102,9 +108,11 @@ class SignInForm extends State<SignScreen> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Text(
+                            Text(
                               "Sign In",
-                              style: TextStyle(
+                              style: GoogleFonts.ubuntu(
+                                textStyle:
+                                    Theme.of(context).textTheme.displayLarge,
                                 fontSize: 30.0,
                                 color: Colors.blue,
                                 fontWeight: FontWeight.bold,
@@ -137,10 +145,13 @@ class SignInForm extends State<SignScreen> {
                               ),
                               onPressed: generateRandomName,
                               // Add logic for the first button here
-                              child: const Text(
+                              child: Text(
                                 'RANDOM',
-                                style: TextStyle(
+                                style: GoogleFonts.ubuntu(
+                                  textStyle:
+                                      Theme.of(context).textTheme.displayLarge,
                                   fontSize: 16.0,
+                                  color: Colors.white,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -171,10 +182,14 @@ class SignInForm extends State<SignScreen> {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  const Text(
+                                  Text(
                                     'CONTINUE  ',
-                                    style: TextStyle(
+                                    style: GoogleFonts.ubuntu(
+                                      textStyle: Theme.of(context)
+                                          .textTheme
+                                          .displayLarge,
                                       fontSize: 16.0,
+                                      color: Colors.white,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
