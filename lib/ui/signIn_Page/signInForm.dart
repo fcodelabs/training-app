@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'dart:ui';
 
-import '../diary_home_page/HomePage.dart';
+import '../diary_home_page/home_page.dart';
 
 class SignScreen extends StatefulWidget {
   const SignScreen({super.key});
@@ -83,7 +83,7 @@ class SignInForm extends State<SignScreen> {
                       child: Container(
                         margin: const EdgeInsets.all(6.0),
                         padding: const EdgeInsets.all(20),
-                        height: 320.0,
+                        height: MediaQuery.of(context).size.height * 0.40,
                         width: double.infinity,
                         decoration: const BoxDecoration(
                           color: Colors.white,
