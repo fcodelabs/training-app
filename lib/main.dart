@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:training_app/ui/signIn_page/signInForm.dart';
+import 'package:training_app/ui/sign_in_page/sign_in_page.dart';
 
 void main() {
   runApp(const MyApp());
