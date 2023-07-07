@@ -15,6 +15,13 @@ class DiaryHomePage extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
+            Text(
+              nickName,
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
             const SizedBox(height: 20),
             const TextField(
               decoration: InputDecoration(
