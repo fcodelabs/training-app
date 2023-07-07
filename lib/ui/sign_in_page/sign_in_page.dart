@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:ui';
 
-import '../diary_home_page/home_page.dart';
+import '../diary_home_page/diary_home_page.dart';
 
 class SignScreen extends StatefulWidget {
   const SignScreen({super.key});
