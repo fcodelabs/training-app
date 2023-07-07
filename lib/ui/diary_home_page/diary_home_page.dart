@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class DiaryHomePage extends StatelessWidget {
-  const DiaryHomePage({super.key, required String nickName});
+  final String nickName;
+
+  const DiaryHomePage({Key? key, required this.nickName}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -11,19 +13,59 @@ class DiaryHomePage extends StatelessWidget {
       ),
       body: Container(
         padding: const EdgeInsets.all(20),
-        child: const Column(
+        child: Column(
           children: [
-            SizedBox(height: 20),
-            TextField(
+            const SizedBox(height: 20),
+            const TextField(
               decoration: InputDecoration(
-                labelText: 'Title',
+                labelText: 'Submit New',
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(40)),
                 ),
               ),
               // controller: nicknameController,
               // onChanged: (value) => bindChangeEvent(),
-            )
+            ),
+            Container(
+              width: double.infinity,
+              margin: const EdgeInsets.only(top: 30),
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => DiaryHomePage(nickName: nickName),
+                    ),
+                  );
+                },
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                    (Set<MaterialState> states) {
+                      if (states.contains(MaterialState.disabled)) {
+                        return const Color.fromARGB(255, 177, 173, 173);
+                      }
+                      return const Color.fromARGB(255, 30, 149, 246);
+                    },
+                  ),
+                  padding: MaterialStateProperty.all(
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  ),
+                  shape: MaterialStateProperty.all(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(40),
+                    ),
+                  ),
+                ),
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('SUBMIT '),
+                    Icon(Icons.arrow_forward),
+                    SizedBox(width: 8),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ),
