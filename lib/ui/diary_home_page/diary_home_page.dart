@@ -181,7 +181,7 @@ class DiaryHomePage extends State<ScreenState> {
                               );
                             },
                             child: MouseRegion(
-                              cursor: SystemMouseCursors.grab,
+                              cursor: SystemMouseCursors.click,
                               child: Image.asset(
                                 'assets/images/user.png',
                                 height: 50,
@@ -249,21 +249,24 @@ class DiaryHomePage extends State<ScreenState> {
                       ),
                     ),
                     const SizedBox(height: 16.0),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        fixedSize: const Size(420, 45),
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(15)),
+                    SizedBox(
+                      height: 45,
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(15)),
+                          ),
                         ),
-                      ),
-                      onPressed: submitData,
-                      child: Text(
-                        'SUBMIT',
-                        style: GoogleFonts.ubuntu(
-                          textStyle: Theme.of(context).textTheme.displayLarge,
-                          fontSize: 16.0,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
+                        onPressed: submitData,
+                        child: Text(
+                          'SUBMIT',
+                          style: GoogleFonts.ubuntu(
+                            textStyle: Theme.of(context).textTheme.displayLarge,
+                            fontSize: 16.0,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),
