@@ -26,6 +26,16 @@ class DiaryHomePage extends StatelessWidget {
               // controller: nicknameController,
               // onChanged: (value) => bindChangeEvent(),
             ),
+            const SizedBox(height: 20),
+            const TextField(
+              maxLines: 5, // Set the maximum number of lines
+              decoration: InputDecoration(
+                labelText: 'Your Message',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                ),
+              ),
+            ),
             Container(
               width: double.infinity,
               margin: const EdgeInsets.only(top: 30),
