@@ -7,16 +7,14 @@ class DearDiaryApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Dear Diary',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const Scaffold(
+        debugShowCheckedModeBanner: false,
+        title: 'Dear Diary',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: const Scaffold(
           backgroundColor: Colors.blue,
-          body: Center(
-            child: SignInPage(),
-          )),
-    );
+          body: SignInPage(),
+        ));
   }
 }
