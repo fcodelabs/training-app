@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:training_app/ui/diary_home_page/diary_home_page.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({Key? key}) : super(key: key);
@@ -21,6 +22,7 @@ class _SignInPageState extends State<SignInPage> {
       final random = Random();
       final randomIndex = random.nextInt(names.length);
       nicknameController.text = names[randomIndex];
+      nickName = nicknameController.text;
       isEnable = true;
     });
   }
@@ -28,6 +30,7 @@ class _SignInPageState extends State<SignInPage> {
   void bindChangeEvent() {
     setState(() {
       isEnable = nicknameController.text.isNotEmpty;
+      nickName = nicknameController.text;
     });
   }
 
@@ -100,7 +103,18 @@ class _SignInPageState extends State<SignInPage> {
                 width: double.infinity,
                 margin: const EdgeInsets.only(top: 30),
                 child: ElevatedButton(
-                  onPressed: isEnable ? () {} : null,
+                  onPressed: isEnable
+                      ? () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => DiaryHomePage(
+                                nickName: nicknameController.text,
+                              ),
+                            ),
+                          );
+                        }
+                      : null,
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.resolveWith<Color>(
                       (Set<MaterialState> states) {
