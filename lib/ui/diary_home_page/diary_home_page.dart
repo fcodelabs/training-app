@@ -2,11 +2,17 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-class DiaryHomePage extends StatelessWidget {
+class ScreenState extends StatefulWidget {
   final String textFieldValue;
+  const ScreenState(this.textFieldValue, {super.key});
+  @override
+  // ignore: no_logic_in_create_state
+  DiaryHomePage createState() => DiaryHomePage(textFieldValue);
+}
 
-  const DiaryHomePage(this.textFieldValue, {super.key});
-
+class DiaryHomePage extends State<ScreenState> {
+  final String textFieldValue;
+  DiaryHomePage(this.textFieldValue);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,7 +82,6 @@ class DiaryHomePage extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 16.0),
-                    
                   ],
                 ),
               ),
