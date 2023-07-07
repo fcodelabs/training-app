@@ -16,12 +16,14 @@ class DiaryHomePage extends StatelessWidget {
             SizedBox(height: 20),
             TextField(
               decoration: InputDecoration(
-                labelText: 'Your Nickname',
-                border: OutlineInputBorder(),
+                labelText: 'Title',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(40)),
+                ),
               ),
               // controller: nicknameController,
               // onChanged: (value) => bindChangeEvent(),
-            ),
+            )
           ],
         ),
       ),
