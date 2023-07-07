@@ -37,11 +37,12 @@ class DiaryHomePage extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.only(right: 20.0),
-                            child: Image.asset(
-                                'assets/images/notification-bell.png',
-                                height: 40),
+                          const Padding(
+                            padding: EdgeInsets.only(right: 10.0),
+                            child: Icon(
+                              Icons.notifications,
+                              size: 50,
+                            ),
                           ),
                           GestureDetector(
                             onTap: () {
@@ -67,7 +68,7 @@ class DiaryHomePage extends StatelessWidget {
                               cursor: SystemMouseCursors.grab,
                               child: Image.asset(
                                 'assets/images/user.png',
-                                height: 40,
+                                height: 50,
                               ),
                             ),
                           ),
@@ -75,6 +76,7 @@ class DiaryHomePage extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 16.0),
+                    
                   ],
                 ),
               ),

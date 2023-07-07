@@ -193,10 +193,11 @@ class SignInForm extends State<SignScreen> {
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  Image.asset(
-                                    'assets/images/right-arrow.png',
-                                    height: 40,
-                                  ),
+                                  // Image.asset(
+                                  //   'assets/images/right-arrow.png',
+                                  //   height: 40,
+                                  // ),
+                                  const Icon(Icons.arrow_forward),
                                 ],
                               ),
                             ),
