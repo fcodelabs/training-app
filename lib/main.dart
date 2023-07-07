@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:training_app/ui/sign_up_page/sign_up_page.dart';
+import 'package:training_app/ui/sign_in_page/sign_in_page.dart';
 
 void main() {
-  runApp(const MaterialApp(
-    home: MyApp(),
-  ));
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -14,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'My App',
+      title: 'Dear Diary',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),

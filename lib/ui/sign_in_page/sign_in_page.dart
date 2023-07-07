@@ -1,3 +1,4 @@
+import 'dart:ffi';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -25,7 +26,7 @@ class _SignInPageState extends State<SignInPage> {
     });
   }
 
-  void bindChangeEvent(String value) {
+  void bindChangeEvent() {
     setState(() {
       isEnable = nicknameController.text.isNotEmpty;
     });
@@ -51,7 +52,7 @@ class _SignInPageState extends State<SignInPage> {
         ),
         Container(
           padding: const EdgeInsets.all(20),
-          height: 300,
+          height: MediaQuery.of(context).size.height * 0.50,
           margin: const EdgeInsets.only(left: 10, right: 10, top: 20),
           decoration: const BoxDecoration(
             color: Color.fromARGB(255, 255, 255, 255),
@@ -75,7 +76,7 @@ class _SignInPageState extends State<SignInPage> {
                   border: OutlineInputBorder(),
                 ),
                 controller: nicknameController,
-                onChanged: (value) => bindChangeEvent(value),
+                onChanged: (value) => bindChangeEvent(),
               ),
               const SizedBox(height: 20),
               ElevatedButton(
