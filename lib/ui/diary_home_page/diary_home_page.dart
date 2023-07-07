@@ -1,31 +1,86 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
-class SecondScreen extends StatelessWidget {
+class DiaryHomePage extends StatelessWidget {
   final String textFieldValue;
 
-  const SecondScreen(this.textFieldValue, {super.key});
+  const DiaryHomePage(this.textFieldValue, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Second Screen'),
+        title: const Text('Home Screen'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text(
-              'Value from First Screen:',
-              style: TextStyle(fontSize: 18.0),
+      body: Stack(
+        children: [
+          Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/images/bg_image.jpg'),
+                fit: BoxFit.cover,
+              ),
             ),
-            Text(
-              textFieldValue,
-              style:
-                  const TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+          ),
+          BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+            child: Container(
+              color: Colors.black.withOpacity(0.3),
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(right: 20.0),
+                            child: Image.asset(
+                                'assets/images/notification-bell.png',
+                                height: 40),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: const Text('User Name'),
+                                    content: Text(textFieldValue),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: const Text('Close'),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                            },
+                            child: MouseRegion(
+                              cursor: SystemMouseCursors.grab,
+                              child: Image.asset(
+                                'assets/images/user.png',
+                                height: 40,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 16.0),
+                  ],
+                ),
+              ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
