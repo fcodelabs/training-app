@@ -204,7 +204,7 @@ class DiaryHomePage extends State<ScreenState> {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 25.0),
+                    const SizedBox(height: 22.0),
                     Align(
                       alignment: Alignment.centerLeft, // Added
                       child: Text(
