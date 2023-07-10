@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:training_app/ui/widgets/diary_card/diary_card.dart';
+import 'package:training_app/ui/widgets/diary_card/diary_card_provider.dart';
 
 class DiaryHomePage extends StatefulWidget {
   final String name;
@@ -13,7 +13,7 @@ class DiaryHomePage extends StatefulWidget {
 class _DiaryHomePageState extends State<DiaryHomePage> {
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
-  List<DiaryCard> diaryCards = [];
+  List<DiaryCardProvider> diaryCards = [];
   bool addNewDiary = false;
 
   @override
@@ -152,7 +152,7 @@ class _DiaryHomePageState extends State<DiaryHomePage> {
                       }
                       setState(() {
                         diaryCards.add(
-                          DiaryCard(
+                          DiaryCardProvider(
                             username: 'Dasun',
                             title: titleController.text,
                             description: descriptionController.text,

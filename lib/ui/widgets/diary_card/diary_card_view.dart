@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class DiaryCard extends StatefulWidget {
+class DiaryCardView extends StatefulWidget {
   final String title;
   final String description;
   final String username;
 
-  const DiaryCard({
+  const DiaryCardView({
     Key? key,
     required this.username,
     required this.title,
@@ -13,10 +13,10 @@ class DiaryCard extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<DiaryCard> createState() => _DiaryCardState();
+  State<DiaryCardView> createState() => _DiaryCardState();
 }
 
-class _DiaryCardState extends State<DiaryCard> {
+class _DiaryCardState extends State<DiaryCardView> {
   bool showMore = false;
 
   @override
@@ -24,8 +24,8 @@ class _DiaryCardState extends State<DiaryCard> {
     String descriptionText = showMore
         ? widget.description
         : widget.description.length > 5
-        ? "${widget.description.substring(0, 5)}..."
-        : widget.description;
+            ? "${widget.description.substring(0, 5)}..."
+            : widget.description;
     bool showMoreOption = widget.description.length > 5;
 
     return SizedBox(
