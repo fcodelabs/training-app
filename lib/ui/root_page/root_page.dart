@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:training_app/ui/sign_in_page/sign_in_page.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class DearDiaryApp extends StatelessWidget {
+  const DearDiaryApp({super.key});
 
   @override
   Widget build(BuildContext context) {

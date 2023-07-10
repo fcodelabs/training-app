@@ -176,7 +176,6 @@ class SignInForm extends State<SignScreen> {
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) =>
-
                                                 ScreenState(textFieldValue),
                                           ),
                                         );

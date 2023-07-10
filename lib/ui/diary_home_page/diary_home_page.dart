@@ -7,7 +7,8 @@ import '../widget/diary_card/diary_card.dart';
 
 class ScreenState extends StatefulWidget {
   final String textFieldValue;
-  const ScreenState(this.textFieldValue, {super.key});
+
+  const ScreenState(this.textFieldValue, {Key? key}) : super(key: key);
 
   @override
   // ignore: no_logic_in_create_state
@@ -18,6 +19,8 @@ class DiaryHomePage extends State<ScreenState> {
   final String textFieldValue;
   TextEditingController textFieldController = TextEditingController();
   TextEditingController textAreaController = TextEditingController();
+  List<DiaryEntry> diaryEntries = [];
+  bool isInputVisible = false;
 
   DiaryHomePage(this.textFieldValue);
 
@@ -34,13 +37,33 @@ class DiaryHomePage extends State<ScreenState> {
   }
 
   void submitData() {
-    String textFieldInput = textFieldController.text;
-    String textAreaInput = textAreaController.text;
+    String textFieldInput = textFieldController.text.trim();
+    String textAreaInput = textAreaController.text.trim();
 
-    print('User Name: $textFieldValue');
-    print('Title : $textFieldInput');
-    print('Description : $textAreaInput');
-    clear();
+    if (textFieldInput.isEmpty || textAreaInput.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Title and Description cannot be empty'),
+        ),
+      );
+    } else {
+      DiaryEntry newEntry = DiaryEntry(
+        title: textFieldInput,
+        username: textFieldValue,
+        description: textAreaInput,
+      );
+      setState(() {
+        diaryEntries.add(newEntry);
+      });
+      clear();
+      isInputVisible = false;
+    }
+  }
+
+  void toggleInputVisibility() {
+    setState(() {
+      isInputVisible = !isInputVisible;
+    });
   }
 
   @override
@@ -114,7 +137,7 @@ class DiaryHomePage extends State<ScreenState> {
                       ),
                       const SizedBox(height: 16.0),
                       Align(
-                        alignment: Alignment.centerLeft, // Added
+                        alignment: Alignment.centerLeft,
                         child: Text(
                           " Home",
                           style: GoogleFonts.ubuntu(
@@ -127,9 +150,9 @@ class DiaryHomePage extends State<ScreenState> {
                       ),
                       const SizedBox(height: 22.0),
                       Align(
-                        alignment: Alignment.centerLeft, // Added
+                        alignment: Alignment.centerLeft,
                         child: Text(
-                          "  Your are here :  $textFieldValue",
+                          "  You are here: $textFieldValue",
                           style: GoogleFonts.ubuntu(
                             textStyle: Theme.of(context).textTheme.displayLarge,
                             fontSize: 15.0,
@@ -139,78 +162,107 @@ class DiaryHomePage extends State<ScreenState> {
                         ),
                       ),
                       const SizedBox(height: 26.0),
-                      TextField(
-                        controller: textFieldController,
-                        decoration: InputDecoration(
-                          hintText: 'Submit New',
-                          border: const OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
-                            borderSide: BorderSide.none,
-                          ),
-                          filled: true,
-                          fillColor: Colors.blue[300],
-                          contentPadding: const EdgeInsets.symmetric(
-                              vertical: 12.0, horizontal: 16.0),
+                      Visibility(
+                        visible: isInputVisible,
+                        child: Column(
+                          children: [
+                            TextField(
+                              controller: textFieldController,
+                              decoration: InputDecoration(
+                                hintText: 'Submit New',
+                                border: const OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide: BorderSide.none,
+                                ),
+                                filled: true,
+                                fillColor: Colors.blue[300],
+                                contentPadding: const EdgeInsets.symmetric(
+                                    vertical: 12.0, horizontal: 16.0),
+                              ),
+                            ),
+                            const SizedBox(height: 16.0),
+                            TextFormField(
+                              controller: textAreaController,
+                              maxLines: 5,
+                              decoration: InputDecoration(
+                                hintText: 'Enter Description',
+                                border: const OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide: BorderSide.none,
+                                ),
+                                filled: true,
+                                fillColor: Colors.blue[200],
+                                contentPadding: const EdgeInsets.symmetric(
+                                    vertical: 12.0, horizontal: 16.0),
+                              ),
+                            ),
+                            const SizedBox(height: 16.0),
+                            SizedBox(
+                              height: 45,
+                              width: double.infinity,
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  shape: const RoundedRectangleBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(15)),
+                                  ),
+                                ),
+                                onPressed: submitData,
+                                child: Text(
+                                  'SUBMIT',
+                                  style: GoogleFonts.ubuntu(
+                                    textStyle: Theme.of(context)
+                                        .textTheme
+                                        .displayLarge,
+                                    fontSize: 16.0,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 16.0),
+                          ],
                         ),
                       ),
-                      const SizedBox(height: 16.0),
-                      TextFormField(
-                        controller: textAreaController,
-                        maxLines: 5,
-                        decoration: InputDecoration(
-                          hintText: 'Enter Description',
-                          border: const OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
-                            borderSide: BorderSide.none,
-                          ),
-                          filled: true,
-                          fillColor: Colors.blue[200],
-                          contentPadding: const EdgeInsets.symmetric(
-                              vertical: 12.0, horizontal: 16.0),
-                        ),
-                      ),
-                      const SizedBox(height: 16.0),
-                      SizedBox(
-                        height: 45,
-                        width: double.infinity,
+                      Align(
+                        alignment: AlignmentDirectional.topStart,
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.indigo[200],
+                            fixedSize: const Size(160, 35),
                             shape: const RoundedRectangleBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(15)),
+                                  BorderRadius.all(Radius.circular(20)),
                             ),
                           ),
-                          onPressed: submitData,
+                          onPressed: toggleInputVisibility,
                           child: Text(
-                            'SUBMIT',
+                            isInputVisible ? 'Close' : 'Submit New',
                             style: GoogleFonts.ubuntu(
                               textStyle:
                                   Theme.of(context).textTheme.displayLarge,
-                              fontSize: 16.0,
-                              color: Colors.white,
+                              fontSize: 17.0,
+                              color: Colors.black,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                         ),
                       ),
-                      const SizedBox(height: 16.0),
-                      const DiaryCard(
-                        title: 'Diary Entry 1',
-                        username: 'Nimesh',
-                        description:
-                            'Im sorry, but I am unable to generate the text for the paragraph without any context or instructions. Could you please provide more information or a specific topic for the paragraph,',
-                      ),
-                      const DiaryCard(
-                        title: 'Diary Entry 2',
-                        username: 'Pasan',
-                        description:
-                            'Im sorry, but I am unable to generate the text for the paragraph without any context or instructions. Could you please provide more information or a specific topic for the paragraph,',
-                      ),
-                      const DiaryCard(
-                        title: 'Diary Entry 3',
-                        username: 'Sandun',
-                        description:
-                            'Im sorry, but I am unable to generate the text for the paragraph without any context.',
+                      const SizedBox(height: 45),
+                      ListView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: diaryEntries.length,
+                        itemBuilder: (context, index) {
+                          return DiaryCard(
+                            title: diaryEntries[index].title,
+                            username: diaryEntries[index].username,
+                            description: diaryEntries[index].description,
+                          );
+                        },
                       ),
                     ],
                   ),
@@ -222,4 +274,16 @@ class DiaryHomePage extends State<ScreenState> {
       ),
     );
   }
+}
+
+class DiaryEntry {
+  final String title;
+  final String username;
+  final String description;
+
+  DiaryEntry({
+    required this.title,
+    required this.username,
+    required this.description,
+  });
 }
