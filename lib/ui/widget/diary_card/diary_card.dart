@@ -27,9 +27,9 @@ class DiaryCardState extends State<DiaryCard> {
 
     return Card(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0), // Set border radius here
+        borderRadius: BorderRadius.circular(10.0), 
       ),
-      color: Colors.blue[200], // Set background color here
+      color: Colors.blue[200], 
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -55,7 +55,7 @@ class DiaryCardState extends State<DiaryCard> {
             child: Text(
               displayedDescription,
               style: const TextStyle(
-                  color: Colors.black, fontSize: 15), // Set text color here
+                  color: Colors.black, fontSize: 15), 
             ),
           ),
           if (widget.description.length > 100)
@@ -72,7 +72,7 @@ class DiaryCardState extends State<DiaryCard> {
                   style: const TextStyle(
                     color: Colors.black,
                     fontSize: 15,
-                    fontWeight: FontWeight.bold, // Set text color here
+                    fontWeight: FontWeight.bold, 
                     decoration: TextDecoration.underline,
                   ),
                 ),
