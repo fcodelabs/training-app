@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../util/diary_entry.dart';
 import '../widget/diary_card/diary_card.dart';
 
 class ScreenState extends StatefulWidget {
@@ -274,16 +275,4 @@ class DiaryHomePage extends State<ScreenState> {
       ),
     );
   }
-}
-
-class DiaryEntry {
-  final String title;
-  final String username;
-  final String description;
-
-  DiaryEntry({
-    required this.title,
-    required this.username,
-    required this.description,
-  });
 }
