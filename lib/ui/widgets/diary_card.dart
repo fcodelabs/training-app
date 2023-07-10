@@ -24,8 +24,8 @@ class _DiaryCardState extends State<DiaryCard> {
     String descriptionText = showMore
         ? widget.description
         : widget.description.length > 5
-            ? widget.description.substring(0, 5)
-            : widget.description;
+        ? "${widget.description.substring(0, 5)}..."
+        : widget.description;
     bool showMoreOption = widget.description.length > 5;
 
     return SizedBox(

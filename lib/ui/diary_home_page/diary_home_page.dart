@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:training_app/ui/widgets/diary_card.dart';
 
-class DiaryHomePage extends StatelessWidget {
+class DiaryHomePage extends StatefulWidget {
   final String name;
 
   const DiaryHomePage({Key? key, required this.name}) : super(key: key);
+
+  @override
+  State<DiaryHomePage> createState() => _DiaryHomePageState();
+}
+
+class _DiaryHomePageState extends State<DiaryHomePage> {
+  TextEditingController titleController = TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
+  List<DiaryCard> diaryCards = [];
+  bool addNewDiary = false;
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +34,7 @@ class DiaryHomePage extends StatelessWidget {
         ),
       ),
       body: Container(
+        height: double.infinity,
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/images/background.jpeg'),
@@ -36,7 +47,7 @@ class DiaryHomePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                name,
+                widget.name,
                 style: const TextStyle(
                   fontSize: 40,
                   fontWeight: FontWeight.bold,
@@ -45,7 +56,7 @@ class DiaryHomePage extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               Text(
-                "You are here: $name",
+                "You are here: ${widget.name}",
                 style: const TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
@@ -53,124 +64,136 @@ class DiaryHomePage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20),
-              const TextField(
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Color.fromARGB(255, 255, 255, 255),
-                ),
-                decoration: InputDecoration(
-                  hintText: 'Submit New',
-                  filled: true,
-                  fillColor: Color.fromARGB(47, 43, 0, 255),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide.none,
-                    borderRadius: BorderRadius.all(Radius.circular(40)),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 20),
-              const TextField(
-                maxLines: 5,
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Color.fromARGB(255, 255, 255, 255),
-                ),
-                decoration: InputDecoration(
-                  labelText: 'Enter Description',
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide.none,
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                  ),
-                  filled: true,
-                  fillColor: Color.fromARGB(47, 43, 0, 255),
-                ),
-              ),
               Container(
                 width: double.infinity,
                 margin: const EdgeInsets.only(top: 30),
                 child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => DiaryHomePage(name: name),
+                    onPressed: () {
+                      setState(() {
+                        addNewDiary = !addNewDiary;
+                      });
+                    },
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                            (Set<MaterialState> states) {
+                          if (states.contains(MaterialState.disabled)) {
+                            return const Color.fromARGB(50, 30, 149, 246);
+                          }
+                          return const Color.fromARGB(255, 30, 149, 246);
+                        },
                       ),
-                    );
-                  },
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                      (Set<MaterialState> states) {
-                        if (states.contains(MaterialState.disabled)) {
-                          return const Color.fromARGB(255, 177, 173, 173);
-                        }
-                        return const Color.fromARGB(255, 30, 149, 246);
-                      },
-                    ),
-                    padding: MaterialStateProperty.all(
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                    ),
-                    shape: MaterialStateProperty.all(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(40),
+                      padding: MaterialStateProperty.all(
+                        const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
+                      ),
+                      shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(40),
+                        ),
                       ),
                     ),
+                    child: Text(
+                        !addNewDiary ? "ADD NEW DIARY CARD" : "DISCART CARD")),
+              ),
+              const SizedBox(height: 20),
+              if (addNewDiary)
+                TextField(
+                  controller: titleController,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    color: Color.fromARGB(255, 255, 255, 255),
                   ),
-                  child: const Text(
-                    'SUBMIT',
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.white,
+                  decoration: const InputDecoration(
+                    hintText: 'Submit New',
+                    filled: true,
+                    fillColor: Color.fromARGB(47, 43, 0, 255),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                      borderRadius: BorderRadius.all(Radius.circular(40)),
                     ),
                   ),
                 ),
-              ),
               const SizedBox(height: 20),
-              const DiaryCard(
-                username: 'Dasun',
-                title: 'Enter Title',
-                description: 'Submit New',
-              ),
-              const DiaryCard(
-                username: 'Dasun',
-                title: 'Enter Description',
-                description: '',
-              ),
-              const DiaryCard(
-                username: 'Dasun',
-                title: 'Enter Description',
-                description: '',
-              ),
-              const DiaryCard(
-                username: 'Dasun',
-                title: 'Enter Description',
-                description:
-                    'Enter Description Enter Description Enter Description',
-              ),
-              const DiaryCard(
-                username: 'Dasun',
-                title: 'Enter Description',
-                description: '',
-              ),
-              const DiaryCard(
-                username: 'Dasun',
-                title: 'Enter Description',
-                description: '',
-              ),
-              const DiaryCard(
-                username: 'Dasun',
-                title: 'Enter Description',
-                description: '',
-              ),
-              const DiaryCard(
-                username: 'Dasun',
-                title: 'Enter Description',
-                description: '',
-              ),
-              const DiaryCard(
-                username: 'Dasun',
-                title: 'Enter Description',
-                description: '',
-              ),
+              if (addNewDiary)
+                TextField(
+                  controller: descriptionController,
+                  maxLines: 5,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    color: Color.fromARGB(255, 255, 255, 255),
+                  ),
+                  decoration: const InputDecoration(
+                    hintText: 'Enter Description',
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                    ),
+                    filled: true,
+                    fillColor: Color.fromARGB(47, 43, 0, 255),
+                  ),
+                ),
+              if (addNewDiary)
+                Container(
+                  width: double.infinity,
+                  margin: const EdgeInsets.only(top: 30),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      if (titleController.text.isEmpty ||
+                          descriptionController.text.isEmpty) {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return const AlertDialog(
+                              title: Text("My title"),
+                              content: Text("This is my message."),
+                            );
+                          },
+                        );
+                        return;
+                      }
+                      setState(() {
+                        diaryCards.add(
+                          DiaryCard(
+                            username: 'Dasun',
+                            title: titleController.text,
+                            description: descriptionController.text,
+                          ),
+                        );
+                        titleController.clear();
+                        descriptionController.clear();
+                      });
+                      print(titleController.text);
+                      print(descriptionController.text);
+                    },
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                            (Set<MaterialState> states) {
+                          if (states.contains(MaterialState.disabled)) {
+                            return const Color.fromARGB(255, 177, 173, 173);
+                          }
+                          return const Color.fromARGB(255, 30, 149, 246);
+                        },
+                      ),
+                      padding: MaterialStateProperty.all(
+                        const EdgeInsets.symmetric(
+                            horizontal: 20, vertical: 20),
+                      ),
+                      shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(40),
+                        ),
+                      ),
+                    ),
+                    child: const Text(
+                      'SUBMIT',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+              const SizedBox(height: 20),
+              ...diaryCards,
             ],
           ),
         ),
