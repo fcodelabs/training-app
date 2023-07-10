@@ -57,13 +57,9 @@ class SignInForm extends State<SignScreen> {
             ),
           ),
           BackdropFilter(
-            filter: ImageFilter.blur(
-                sigmaX: 5,
-                sigmaY:
-                    5), // Adjust the sigmaX and sigmaY values for the desired blur intensity
+            filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
             child: Container(
-              color:
-                  Colors.black.withOpacity(0.5), // Adjust the opacity as needed
+              color: Colors.black.withOpacity(0.5),
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Column(
@@ -131,9 +127,7 @@ class SignInForm extends State<SignScreen> {
                                   filled: true,
                                   fillColor: Colors.grey[200],
                                 ),
-                                controller:
-                                    // TextEditingController(text: randomName)
-                                    _textFieldController,
+                                controller: _textFieldController,
                               ),
                               const SizedBox(height: 16.0),
                               ElevatedButton(
@@ -145,7 +139,6 @@ class SignInForm extends State<SignScreen> {
                                   ),
                                 ),
                                 onPressed: generateRandomName,
-                                // Add logic for the first button here
                                 child: Text(
                                   'RANDOM',
                                   style: GoogleFonts.ubuntu(
@@ -176,7 +169,6 @@ class SignInForm extends State<SignScreen> {
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) =>
-
                                                 ScreenState(textFieldValue),
                                           ),
                                         );
@@ -198,10 +190,6 @@ class SignInForm extends State<SignScreen> {
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
-                                    // Image.asset(
-                                    //   'assets/images/right-arrow.png',
-                                    //   height: 40,
-                                    // ),
                                     const Icon(Icons.arrow_forward),
                                   ],
                                 ),
