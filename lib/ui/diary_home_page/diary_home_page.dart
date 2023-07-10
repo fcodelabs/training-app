@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:training_app/ui/widgets/diary_card.dart';
+import 'package:training_app/ui/widgets/diary_card/diary_card.dart';
 
 class DiaryHomePage extends StatefulWidget {
   final String name;
@@ -75,7 +75,7 @@ class _DiaryHomePageState extends State<DiaryHomePage> {
                     },
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                            (Set<MaterialState> states) {
+                        (Set<MaterialState> states) {
                           if (states.contains(MaterialState.disabled)) {
                             return const Color.fromARGB(50, 30, 149, 246);
                           }
@@ -166,7 +166,7 @@ class _DiaryHomePageState extends State<DiaryHomePage> {
                     },
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                            (Set<MaterialState> states) {
+                        (Set<MaterialState> states) {
                           if (states.contains(MaterialState.disabled)) {
                             return const Color.fromARGB(255, 177, 173, 173);
                           }
