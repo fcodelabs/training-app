@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:training_app/ui/diary_home_page/diary_home_page.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -13,7 +14,7 @@ class LoginScreen extends StatefulWidget {
 class _SignInForm extends State<LoginScreen> {
   final TextEditingController tempNameController = TextEditingController();
   bool isEnable = false;
-  String tempName = '';
+  String name = '';
   void setRandomTempName() {
     final List<String> names = [
       'Pahasara',
@@ -23,12 +24,13 @@ class _SignInForm extends State<LoginScreen> {
       'Maneesha',
       'Iduranga',
       'Gunawardhana',
-      'Pitumantha'
+      'Piyumantha'
     ];
     final Random random = Random();
     final int index = random.nextInt(names.length);
     setState(() {
       tempNameController.text = names[index];
+      name = tempNameController.text;
       isEnable = true;
     });
   }
@@ -36,7 +38,40 @@ class _SignInForm extends State<LoginScreen> {
   void bindChangeClickEvent() {
     setState(() {
       isEnable = tempNameController.text.isNotEmpty;
+      name = tempNameController.text;
     });
+  }
+
+  void navigateToDiaryHomeScreen() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => Scaffold(
+          appBar: AppBar(
+            leading: IconButton(
+              icon: const Icon(Icons.arrow_back),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+          ),
+          body: Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/img/background.jpg'),
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: const Scaffold(
+              backgroundColor: Colors.transparent,
+              body: Center(
+                child: DiaryHomeScreen(),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 
   @override
@@ -112,7 +147,7 @@ class _SignInForm extends State<LoginScreen> {
                       borderRadius: BorderRadius.all(Radius.circular(40)),
                     ),
                   ),
-                  onPressed: isEnable ? () {} : null,
+                  onPressed: isEnable ? navigateToDiaryHomeScreen : null,
                   child: const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -127,7 +162,9 @@ class _SignInForm extends State<LoginScreen> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 15,)
+                const SizedBox(
+                  height: 15,
+                )
               ],
             ),
           ),
