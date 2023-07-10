@@ -12,3 +12,9 @@ class ContinueToHomePageEvent extends SignInPageEvent {
 class SetRandomNicknameEvent extends SignInPageEvent {
   SetRandomNicknameEvent();
 }
+
+class SetNameEvent extends SignInPageEvent {
+  final String name;
+
+  SetNameEvent({required this.name});
+}

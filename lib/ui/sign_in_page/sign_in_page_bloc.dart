@@ -8,16 +8,38 @@ class SignInPageBloc extends Bloc<SignInPageEvent, SignInPageState> {
   SignInPageBloc() : super(SignInPageState.initialState) {
     on<SetRandomNicknameEvent>(_setRandomNickname);
     on<ContinueToHomePageEvent>(_continueToHomePage);
+    on<SetNameEvent>(_setName);
   }
 
   void _setRandomNickname(
       SetRandomNicknameEvent event, Emitter<SignInPageState> emit) {
-    const names = ['Name1', 'Name2', 'Name3', 'Name4', 'Name5'];
+    const names = ['John', 'Jane', 'Doe', 'Foo', 'Bar'];
     final random = Random();
     final randomIndex = random.nextInt(names.length);
-    emit(state.clone(name: names[randomIndex], isEnable: true));
+    final randomNickname = names[randomIndex];
+
+    emit(state.clone(
+      name: randomNickname,
+      isEnable: true,
+    ));
+    print(randomNickname);
   }
 
   void _continueToHomePage(
-      ContinueToHomePageEvent event, Emitter<SignInPageState> emit) {}
+      ContinueToHomePageEvent event, Emitter<SignInPageState> emit) {
+    // if (state.isEnable) {
+    //   Navigator.push(
+    //     context,
+    //     MaterialPageRoute(
+    //       builder: (context) => DiaryHomePage(name: state.name),
+    //     ),
+    //   );
+  }
+
+  void _setName(SetNameEvent event, Emitter<SignInPageState> emit) {
+    emit(state.clone(
+      name: event.name,
+      isEnable: true,
+    ));
+  }
 }
