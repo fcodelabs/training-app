@@ -1,8 +1,11 @@
 import 'dart:math';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:training_app/ui/sign_in_page/sign_in_page_event.dart';
 import 'package:training_app/ui/sign_in_page/sign_in_page_state.dart';
+
+import '../diary_home_page/diary_home_page.dart';
 
 class SignInPageBloc extends Bloc<SignInPageEvent, SignInPageState> {
   SignInPageBloc() : super(SignInPageState.initialState) {
@@ -27,13 +30,12 @@ class SignInPageBloc extends Bloc<SignInPageEvent, SignInPageState> {
 
   void _continueToHomePage(
       ContinueToHomePageEvent event, Emitter<SignInPageState> emit) {
-    // if (state.isEnable) {
-    //   Navigator.push(
-    //     context,
-    //     MaterialPageRoute(
-    //       builder: (context) => DiaryHomePage(name: state.name),
-    //     ),
-    //   );
+    Navigator.push(
+      event.context, // error here
+      MaterialPageRoute(
+        builder: (context) => DiaryHomePage(name: state.name),
+      ),
+    );
   }
 
   void _setName(SetNameEvent event, Emitter<SignInPageState> emit) {

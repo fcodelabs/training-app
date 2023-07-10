@@ -59,7 +59,8 @@ class SignInPageView extends StatelessWidget {
                               controller: nicknameController,
                               onChanged: (value) => context
                                   .read<SignInPageBloc>()
-                                  .add(SetRandomNicknameEvent()));
+                                  .add(SetNameEvent(
+                                      name: nicknameController.text)));
                         },
                       ),
                       const SizedBox(height: 20),
@@ -94,9 +95,9 @@ class SignInPageView extends StatelessWidget {
                           builder: (context, state) {
                             return ElevatedButton(
                               onPressed: state.isEnable
-                                  ? () => context
-                                      .read<SignInPageBloc>()
-                                      .add(ContinueToHomePageEvent(name: ''))
+                                  ? () => context.read<SignInPageBloc>().add(
+                                      ContinueToHomePageEvent(
+                                          name: '', context: context))
                                   : null,
                               style: ButtonStyle(
                                 backgroundColor:
