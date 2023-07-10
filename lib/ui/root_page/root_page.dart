@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:training_app/ui/sign_in_page/sign_in_page.dart';
+import 'package:training_app/ui/sign_in_page/sign_in_page_view.dart';
 
 class DearDiaryApp extends StatelessWidget {
   const DearDiaryApp({super.key});
