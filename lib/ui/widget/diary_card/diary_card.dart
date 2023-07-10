@@ -25,6 +25,7 @@ class DiaryCardState extends State<DiaryCard> {
       displayedDescription = "${widget.description.substring(0, 100)}...";
     }
 
+
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.0),
