@@ -89,7 +89,7 @@ class SignInForm extends State<SignScreen> {
                       child: Container(
                         margin: const EdgeInsets.all(6.0),
                         padding: const EdgeInsets.all(20),
-                        height: MediaQuery.of(context).size.height * 0.40,
+                        height: MediaQuery.of(context).size.height * 0.34,
                         width: double.infinity,
                         decoration: const BoxDecoration(
                           color: Colors.white,
@@ -105,103 +105,109 @@ class SignInForm extends State<SignScreen> {
                             )
                           ],
                         ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Sign In",
-                              style: GoogleFonts.ubuntu(
-                                textStyle:
-                                    Theme.of(context).textTheme.displayLarge,
-                                fontSize: 30.0,
-                                color: Colors.blue,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            const SizedBox(height: 25.0),
-                            TextField(
-                              onChanged: (value) => blindChangeEvent(value),
-                              decoration: InputDecoration(
-                                hintText: 'Your Nickname*',
-                                border: const OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10)),
-                                ),
-                                filled: true,
-                                fillColor: Colors.grey[200],
-                              ),
-                              controller:
-                                  // TextEditingController(text: randomName)
-                                  _textFieldController,
-                            ),
-                            const SizedBox(height: 16.0),
-                            ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                fixedSize: const Size(120, 45),
-                                shape: const RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(15)),
-                                ),
-                              ),
-                              onPressed: generateRandomName,
-                              // Add logic for the first button here
-                              child: Text(
-                                'RANDOM',
+                        child: SingleChildScrollView(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "Sign In",
                                 style: GoogleFonts.ubuntu(
                                   textStyle:
                                       Theme.of(context).textTheme.displayLarge,
-                                  fontSize: 16.0,
-                                  color: Colors.white,
+                                  fontSize: 30.0,
+                                  color: Colors.blue,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                            ),
-                            const SizedBox(height: 16.0),
-                            ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                fixedSize: const Size(320, 45),
-                                shape: const RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(15)),
+                              const SizedBox(height: 25.0),
+                              TextField(
+                                onChanged: (value) => blindChangeEvent(value),
+                                decoration: InputDecoration(
+                                  hintText: 'Your Nickname*',
+                                  border: const OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10)),
+                                  ),
+                                  filled: true,
+                                  fillColor: Colors.grey[200],
+                                ),
+                                controller:
+                                    // TextEditingController(text: randomName)
+                                    _textFieldController,
+                              ),
+                              const SizedBox(height: 16.0),
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  fixedSize: const Size(120, 45),
+                                  shape: const RoundedRectangleBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(15)),
+                                  ),
+                                ),
+                                onPressed: generateRandomName,
+                                // Add logic for the first button here
+                                child: Text(
+                                  'RANDOM',
+                                  style: GoogleFonts.ubuntu(
+                                    textStyle: Theme.of(context)
+                                        .textTheme
+                                        .displayLarge,
+                                    fontSize: 16.0,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
-                              onPressed: isEnable
-                                  ? () {
-                                      String textFieldValue =
-                                          _textFieldController.text;
-
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              ScreenState(textFieldValue),
-                                        ),
-                                      );
-                                    }
-                                  : null,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    'CONTINUE  ',
-                                    style: GoogleFonts.ubuntu(
-                                      textStyle: Theme.of(context)
-                                          .textTheme
-                                          .displayLarge,
-                                      fontSize: 16.0,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                              const SizedBox(height: 16.0),
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  fixedSize: const Size(320, 45),
+                                  shape: const RoundedRectangleBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(15)),
                                   ),
-                                  // Image.asset(
-                                  //   'assets/images/right-arrow.png',
-                                  //   height: 40,
-                                  // ),
-                                  const Icon(Icons.arrow_forward),
-                                ],
+                                ),
+                                onPressed: isEnable
+                                    ? () {
+                                        String textFieldValue =
+                                            _textFieldController.text;
+
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+
+                                                ScreenState(textFieldValue),
+                                          ),
+                                        );
+                                        _textFieldController.clear();
+                                        isEnable = false;
+                                      }
+                                    : null,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      'CONTINUE  ',
+                                      style: GoogleFonts.ubuntu(
+                                        textStyle: Theme.of(context)
+                                            .textTheme
+                                            .displayLarge,
+                                        fontSize: 16.0,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    // Image.asset(
+                                    //   'assets/images/right-arrow.png',
+                                    //   height: 40,
+                                    // ),
+                                    const Icon(Icons.arrow_forward),
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),
