@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:training_app/ui/widgets/diary_card.dart';
 
 class DiaryHomePage extends StatelessWidget {
   final String name;
@@ -9,26 +10,28 @@ class DiaryHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 30, 149, 246),
+        backgroundColor: const Color.fromRGBO(0, 64, 255, 1),
         elevation: 0,
-        title: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-          Image.asset('assets/images/logo.png', width: 20, height: 20),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.notifications),
-          ),
-        ]),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Image.asset('assets/images/logo.png', width: 20, height: 20),
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.notifications),
+            ),
+          ],
+        ),
       ),
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/background.jpg'),
+            image: AssetImage('assets/images/background.jpeg'),
             fit: BoxFit.cover,
           ),
         ),
         padding: const EdgeInsets.all(20),
-        child: Align(
-          alignment: Alignment.centerLeft,
+        child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -56,7 +59,6 @@ class DiaryHomePage extends StatelessWidget {
                   color: Color.fromARGB(255, 255, 255, 255),
                 ),
                 decoration: InputDecoration(
-                  labelText: 'Enter Title',
                   hintText: 'Submit New',
                   filled: true,
                   fillColor: Color.fromARGB(47, 43, 0, 255),
@@ -121,6 +123,53 @@ class DiaryHomePage extends StatelessWidget {
                     ),
                   ),
                 ),
+              ),
+              const SizedBox(height: 20),
+              const DiaryCard(
+                username: 'Dasun',
+                title: 'Enter Title',
+                description: 'Submit New',
+              ),
+              const DiaryCard(
+                username: 'Dasun',
+                title: 'Enter Description',
+                description: '',
+              ),
+              const DiaryCard(
+                username: 'Dasun',
+                title: 'Enter Description',
+                description: '',
+              ),
+              const DiaryCard(
+                username: 'Dasun',
+                title: 'Enter Description',
+                description:
+                    'Enter Description Enter Description Enter Description',
+              ),
+              const DiaryCard(
+                username: 'Dasun',
+                title: 'Enter Description',
+                description: '',
+              ),
+              const DiaryCard(
+                username: 'Dasun',
+                title: 'Enter Description',
+                description: '',
+              ),
+              const DiaryCard(
+                username: 'Dasun',
+                title: 'Enter Description',
+                description: '',
+              ),
+              const DiaryCard(
+                username: 'Dasun',
+                title: 'Enter Description',
+                description: '',
+              ),
+              const DiaryCard(
+                username: 'Dasun',
+                title: 'Enter Description',
+                description: '',
               ),
             ],
           ),
