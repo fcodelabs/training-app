@@ -182,7 +182,7 @@ class DiaryHomeScreen extends StatelessWidget {
                                               content: Text(
                                                   'Title and Description cannot be empty'),
                                             ),
-                                          ); // isInputVisible = false;
+                                          );
                                         } else {
                                           context.read<DiaryHomeBloc>().add(
                                               SubmitDataEvent(
