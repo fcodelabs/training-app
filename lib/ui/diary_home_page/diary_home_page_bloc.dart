@@ -24,6 +24,7 @@ class DiaryHomePageBloc extends Bloc<DiaryHomePageEvent, DiaryHomePageState> {
           username: event.username,
         ),
       ],
+      addNewDiary: false,
     ));
   }
 

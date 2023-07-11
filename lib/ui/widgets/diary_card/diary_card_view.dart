@@ -70,6 +70,9 @@ class DiaryCardView extends StatelessWidget {
                               .read<DiaryCardBloc>()
                               .add(ShowMoreButtonPressed());
                         },
+                        highlightColor: Colors
+                            .transparent, // Set highlight color to transparent
+                        splashColor: Colors.transparent,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
@@ -77,7 +80,7 @@ class DiaryCardView extends StatelessWidget {
                               state.isPressed ? "Show less" : "Show more",
                               style: const TextStyle(
                                 fontSize: 16,
-                                color: Color.fromARGB(255, 0, 0, 255),
+                                color: Color.fromARGB(255, 74, 74, 74),
                               ),
                             ),
                           ],

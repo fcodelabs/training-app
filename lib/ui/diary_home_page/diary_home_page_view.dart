@@ -154,10 +154,19 @@ class DiaryHomePageView extends StatelessWidget {
                               showDialog(
                                 context: context,
                                 builder: (BuildContext context) {
-                                  return const AlertDialog(
-                                    title: Text("Error..!"),
-                                    content:
-                                        Text("You must fill all fields..!"),
+                                  return AlertDialog(
+                                    title: const Text("Error..!"),
+                                    content: const Text(
+                                        "You must fill all fields..!"),
+                                    actions: [
+                                      ElevatedButton(
+                                        onPressed: () {
+                                          Navigator.of(context)
+                                              .pop(); // Close the dialog
+                                        },
+                                        child: const Text("Close"),
+                                      ),
+                                    ],
                                   );
                                 },
                               );
