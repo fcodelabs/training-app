@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:training_app/ui/login_page/login_page.dart';
+import 'package:training_app/ui/login_page/login_page_view.dart';
 
 void main() {
   runApp(const DearDiaryApp());
