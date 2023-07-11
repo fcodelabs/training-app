@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:training_app/ui/diary_home_page/diary_home_provider.dart';
 import 'dart:ui';
 
-import '../diary_home_page/diary_home_view.dart';
 import 'sign_in_page_bloc.dart';
 import 'sign_in_page_event.dart';
 import 'sign_in_page_state.dart';
