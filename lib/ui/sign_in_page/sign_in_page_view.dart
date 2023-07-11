@@ -3,13 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:ui';
 
-import '../diary_home_page/diary_home_page.dart';
+import '../diary_home_page/diary_home_view.dart';
 import 'sign_in_page_bloc.dart';
 import 'sign_in_page_event.dart';
 import 'sign_in_page_state.dart';
 
 class SignScreenView extends StatelessWidget {
-
   const SignScreenView({super.key});
 
   @override
@@ -160,7 +159,7 @@ class SignScreenView extends StatelessWidget {
                                                 context,
                                                 MaterialPageRoute(
                                                   builder: (context) =>
-                                                      ScreenState(
+                                                      DiaryHomeScreen(
                                                           textFieldValue),
                                                 ),
                                               );
