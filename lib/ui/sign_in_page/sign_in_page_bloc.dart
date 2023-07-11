@@ -8,6 +8,7 @@ import 'package:training_app/ui/sign_in_page/sign_in_page_state.dart';
 import '../diary_home_page/diary_home_page.dart';
 
 class SignInPageBloc extends Bloc<SignInPageEvent, SignInPageState> {
+  final TextEditingController nameController = TextEditingController();
   SignInPageBloc() : super(SignInPageState.initialState) {
     on<SetRandomNicknameEvent>(_setRandomNickname);
     on<ContinueToHomePageEvent>(_continueToHomePage);
@@ -20,7 +21,7 @@ class SignInPageBloc extends Bloc<SignInPageEvent, SignInPageState> {
     final random = Random();
     final randomIndex = random.nextInt(names.length);
     final randomNickname = names[randomIndex];
-
+    nameController.text = randomNickname;
     emit(state.clone(
       name: randomNickname,
       isEnable: true,
@@ -31,7 +32,7 @@ class SignInPageBloc extends Bloc<SignInPageEvent, SignInPageState> {
   void _continueToHomePage(
       ContinueToHomePageEvent event, Emitter<SignInPageState> emit) {
     Navigator.push(
-      event.context, // error here
+      event.context,
       MaterialPageRoute(
         builder: (context) => DiaryHomePage(name: state.name),
       ),
@@ -39,9 +40,10 @@ class SignInPageBloc extends Bloc<SignInPageEvent, SignInPageState> {
   }
 
   void _setName(SetNameEvent event, Emitter<SignInPageState> emit) {
+    nameController.text = event.name;
     emit(state.clone(
       name: event.name,
-      isEnable: true,
+      isEnable: event.name.isNotEmpty,
     ));
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:training_app/ui/diary_home_page/diary_home_page_bloc.dart';
 import 'package:training_app/ui/widgets/diary_card/diary_card_provider.dart';
 
 class DiaryHomePage extends StatefulWidget {
@@ -13,8 +14,14 @@ class DiaryHomePage extends StatefulWidget {
 class _DiaryHomePageState extends State<DiaryHomePage> {
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
-  List<DiaryCardProvider> diaryCards = [];
+  final DiaryBloc _diaryBloc = DiaryBloc();
   bool addNewDiary = false;
+
+  @override
+  void dispose() {
+    _diaryBloc.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,31 +75,32 @@ class _DiaryHomePageState extends State<DiaryHomePage> {
                 width: double.infinity,
                 margin: const EdgeInsets.only(top: 30),
                 child: ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        addNewDiary = !addNewDiary;
-                      });
-                    },
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                        (Set<MaterialState> states) {
-                          if (states.contains(MaterialState.disabled)) {
-                            return const Color.fromARGB(50, 30, 149, 246);
-                          }
-                          return const Color.fromARGB(255, 30, 149, 246);
-                        },
-                      ),
-                      padding: MaterialStateProperty.all(
-                        const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
-                      ),
-                      shape: MaterialStateProperty.all(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(40),
-                        ),
+                  onPressed: () {
+                    setState(() {
+                      addNewDiary = !addNewDiary;
+                    });
+                  },
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                      (Set<MaterialState> states) {
+                        if (states.contains(MaterialState.disabled)) {
+                          return const Color.fromARGB(50, 30, 149, 246);
+                        }
+                        return const Color.fromARGB(255, 30, 149, 246);
+                      },
+                    ),
+                    padding: MaterialStateProperty.all(
+                      const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
+                    ),
+                    shape: MaterialStateProperty.all(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(40),
                       ),
                     ),
-                    child: Text(
-                        !addNewDiary ? "ADD NEW DIARY CARD" : "DISCART CARD")),
+                  ),
+                  child: Text(
+                      !addNewDiary ? "ADD NEW DIARY CARD" : "DISCARD CARD"),
+                ),
               ),
               const SizedBox(height: 20),
               if (addNewDiary)
@@ -151,7 +159,7 @@ class _DiaryHomePageState extends State<DiaryHomePage> {
                         return;
                       }
                       setState(() {
-                        diaryCards.add(
+                        _diaryBloc.addDiaryCard(
                           DiaryCardProvider(
                             username: 'Dasun',
                             title: titleController.text,
@@ -193,7 +201,18 @@ class _DiaryHomePageState extends State<DiaryHomePage> {
                   ),
                 ),
               const SizedBox(height: 20),
-              ...diaryCards,
+              StreamBuilder<List<DiaryCardProvider>>(
+                stream: _diaryBloc.diaryCardsStream,
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return Column(
+                      children: snapshot.data!,
+                    );
+                  } else {
+                    return const SizedBox();
+                  }
+                },
+              ),
             ],
           ),
         ),

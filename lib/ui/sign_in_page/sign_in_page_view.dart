@@ -5,9 +5,7 @@ import 'package:training_app/ui/sign_in_page/sign_in_page_state.dart';
 import 'package:training_app/ui/sign_in_page/sign_in_page_event.dart';
 
 class SignInPageView extends StatelessWidget {
-  final TextEditingController nicknameController = TextEditingController();
-
-  SignInPageView({super.key});
+  const SignInPageView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -51,16 +49,20 @@ class SignInPageView extends StatelessWidget {
                       const SizedBox(height: 20),
                       BlocBuilder<SignInPageBloc, SignInPageState>(
                         builder: (context, state) {
+                          final nameController =
+                              context.read<SignInPageBloc>().nameController;
+                          nameController.selection = TextSelection.fromPosition(
+                              TextPosition(offset: nameController.text.length));
                           return TextField(
                               decoration: const InputDecoration(
                                 labelText: 'Your Nickname',
                                 border: OutlineInputBorder(),
                               ),
-                              controller: nicknameController,
+                              controller:
+                                  context.read<SignInPageBloc>().nameController,
                               onChanged: (value) => context
                                   .read<SignInPageBloc>()
-                                  .add(SetNameEvent(
-                                      name: nicknameController.text)));
+                                  .add(SetNameEvent(name: value)));
                         },
                       ),
                       const SizedBox(height: 20),
@@ -69,8 +71,8 @@ class SignInPageView extends StatelessWidget {
                           context
                               .read<SignInPageBloc>()
                               .add(SetRandomNicknameEvent());
-                          nicknameController.text =
-                              context.read<SignInPageBloc>().state.name;
+                          // nicknameController.text =
+                          //     context.read<SignInPageBloc>().state.name;
                         },
                         style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all(

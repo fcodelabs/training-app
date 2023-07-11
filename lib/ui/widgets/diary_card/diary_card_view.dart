@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:training_app/ui/widgets/diary_card/diary_card_bloc.dart';
+import 'package:training_app/ui/widgets/diary_card/diary_card_event.dart';
 
 class DiaryCardView extends StatefulWidget {
   final String title;
@@ -64,9 +67,7 @@ class _DiaryCardState extends State<DiaryCardView> {
               if (showMoreOption)
                 ElevatedButton(
                   onPressed: () {
-                    setState(() {
-                      showMore = !showMore;
-                    });
+                    context.read<DiaryCardBloc>().add(ShowMoreButtonPressed());
                   },
                   child: Text(showMore ? 'Show Less' : 'Show More'),
                 ),
