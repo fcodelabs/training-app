@@ -26,13 +26,18 @@ class _DiaryCardState extends State<DiaryCard> {
 
   @override
   Widget build(BuildContext context) {
+    String truncatedDescription = widget.description;
+    if (widget.description.length > 100) {
+      truncatedDescription = _showMore
+          ? widget.description
+          : '${widget.description.substring(0, 100)}...';
+    }
+
     return Padding(
-      padding: const EdgeInsets.all(10.0),
+      padding: const EdgeInsets.only(bottom: 10.0),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
-        height: _showMore
-            ? 250.0
-            : 205.0, // Set the desired heights for expanded and collapsed states
+        width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15.0),
           color: Colors.white.withOpacity(0.5),
@@ -45,7 +50,6 @@ class _DiaryCardState extends State<DiaryCard> {
             ),
           ],
         ),
-        child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
@@ -66,14 +70,11 @@ class _DiaryCardState extends State<DiaryCard> {
                     color: Colors.grey[600],
                   ),
                 ),
-                const SizedBox(height: 16.0),
+                const SizedBox(height: 10.0),
                 Text(
-                  _showMore
-                      ? widget.description
-                      : '${widget.description.substring(0, 100)}...',
+                  truncatedDescription,
                   style: const TextStyle(fontSize: 16.0),
                 ),
-                const SizedBox(height: 8.0),
                 if (widget.description.length > 100)
                   TextButton(
                     onPressed: _toggleShowMore,
@@ -89,9 +90,7 @@ class _DiaryCardState extends State<DiaryCard> {
               ],
             ),
           ),
-        ),
       ),
     );
   }
 }
-
