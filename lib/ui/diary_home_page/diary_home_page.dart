@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:training_app/ui/widget/diary_card/diary_card.dart';
+import 'package:training_app/util/diary_card_entry.dart';
 
 class DiaryHomeScreen extends StatefulWidget {
   final String name;
@@ -13,7 +14,7 @@ class _DiaryHomeScreenState extends State<DiaryHomeScreen> {
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
 
-  List<DiaryEntry> entries = [];
+  List<DiaryCardEntry> entries = [];
   bool isSubmitting = false;
 
   void submitNewButtonPressed() {
@@ -28,9 +29,9 @@ class _DiaryHomeScreenState extends State<DiaryHomeScreen> {
     String username = widget.name.trim();
 
     if (title.isNotEmpty && description.isNotEmpty) {
-      DiaryEntry newEntry = DiaryEntry(title: title, description: description, username: username);
+      DiaryCardEntry newCardEntry = DiaryCardEntry(title: title, description: description, username: username);
       setState(() {
-        entries.add(newEntry);
+        entries.add(newCardEntry);
         isSubmitting = false;
       });
       titleController.clear();
@@ -217,13 +218,4 @@ class _DiaryHomeScreenState extends State<DiaryHomeScreen> {
       ],
     );
   }
-}
-
-class DiaryEntry {
-  final String title;
-  final String description;
-  final String username;
-
-  DiaryEntry(
-      {required this.title, required this.description, required this.username});
 }
