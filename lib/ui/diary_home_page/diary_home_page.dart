@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:training_app/ui/widget/diary_card/diary_card.dart';
+import 'package:training_app/util/diary_card_entry.dart';
 
 class DiaryHomeScreen extends StatefulWidget {
-  const DiaryHomeScreen({super.key});
+  final String name;
+  const DiaryHomeScreen({Key? key, required this.name}) : super(key: key);
 
   @override
   State<DiaryHomeScreen> createState() => _DiaryHomeScreenState();
@@ -11,15 +14,35 @@ class _DiaryHomeScreenState extends State<DiaryHomeScreen> {
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
 
+  List<DiaryCardEntry> entries = [];
+  bool isSubmitting = false;
+
+  void submitNewButtonPressed() {
+    setState(() {
+      isSubmitting = true;
+    });
+  }
+
   void submitButtonPressed() {
-    String title = titleController.text;
-    String description = descriptionController.text;
+    String title = titleController.text.trim();
+    String description = descriptionController.text.trim();
+    String username = widget.name.trim();
 
-    print('Title: $title');
-    print('Description: $description');
-
-    titleController.clear();
-    descriptionController.clear();
+    if (title.isNotEmpty && description.isNotEmpty) {
+      DiaryCardEntry newCardEntry = DiaryCardEntry(title: title, description: description, username: username);
+      setState(() {
+        entries.add(newCardEntry);
+        isSubmitting = false;
+      });
+      titleController.clear();
+      descriptionController.clear();
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Please provide both title and description.'),
+        ),
+      );
+    }
   }
 
   @override
@@ -59,62 +82,112 @@ class _DiaryHomeScreenState extends State<DiaryHomeScreen> {
                       ),
                     ),
                     const SizedBox(height: 30),
-                    TextField(
-                      controller: titleController,
-                      decoration: const InputDecoration(
-                        hintText: 'Submit New',
-                        filled: true,
-                        fillColor: Color.fromRGBO(31, 118, 239, 0.6),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(40)),
-                          borderSide: BorderSide.none,
-                        ),
-                        contentPadding: EdgeInsets.only(
-                            left: 18), // Adjust the padding value as needed
-                        hintStyle: TextStyle(fontSize: 18),
-                      ),
-                      style: const TextStyle(),
-                    ),
-                    const SizedBox(height: 10),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blueAccent[700],
-                        fixedSize: const Size(500, 55),
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(40)),
-                        ),
-                      ),
-                      onPressed: submitButtonPressed,
-                      // Add logic for the first button here
-                      child: const Text(
-                        'SUBMIT',
-                        style: TextStyle(
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                    if (!isSubmitting)
+                      Align(
+                        alignment: Alignment.topLeft,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.blueAccent[700],
+                            fixedSize: const Size(180, 40),
+                            shape: const RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(40)),
+                            ),
+                          ),
+                          onPressed: submitNewButtonPressed,
+                          child: const Align(
+                            alignment: Alignment.centerLeft,
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 10.0),
+                              child: Text(
+                                'Submit New',
+                                style: TextStyle(
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                    const SizedBox(height: 20),
-                    TextField(
-                      controller: descriptionController,
-                      maxLines: 5,
-                      decoration: const InputDecoration(
-                        hintText: 'Enter Description',
-                        filled: true,
-                        fillColor: Color.fromRGBO(31, 118, 239, 0.6),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                          borderSide: BorderSide.none,
-                        ),
-                        contentPadding: EdgeInsets.only(
-                            left: 18,
-                            top: 18), // Adjust the padding value as needed
-                        hintStyle: TextStyle(fontSize: 18),
+                    const SizedBox(height: 25),
+                    if (isSubmitting)
+                      Column(
+                        children: [
+                          TextField(
+                            controller: titleController,
+                            decoration: const InputDecoration(
+                              hintText: 'Title',
+                              filled: true,
+                              fillColor: Color.fromRGBO(31, 118, 239, 0.6),
+                              border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(40)),
+                                borderSide: BorderSide.none,
+                              ),
+                              contentPadding: EdgeInsets.only(
+                                  left:
+                                      18), // Adjust the padding value as needed
+                              hintStyle: TextStyle(fontSize: 18),
+                            ),
+                            style: const TextStyle(),
+                          ),
+                          const SizedBox(height: 10),
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.blueAccent[700],
+                              fixedSize: const Size(500, 55),
+                              shape: const RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(40)),
+                              ),
+                            ),
+                            onPressed: submitButtonPressed,
+                            child: const Text(
+                              'SUBMIT',
+                              style: TextStyle(
+                                fontSize: 18.0,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 20),
+                          TextField(
+                            controller: descriptionController,
+                            maxLines: 5,
+                            decoration: const InputDecoration(
+                              hintText: 'Description',
+                              filled: true,
+                              fillColor: Color.fromRGBO(31, 118, 239, 0.6),
+                              border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10)),
+                                borderSide: BorderSide.none,
+                              ),
+                              contentPadding: EdgeInsets.only(
+                                  left: 18,
+                                  top:
+                                      18), // Adjust the padding value as needed
+                              hintStyle: TextStyle(fontSize: 18),
+                            ),
+                            style: const TextStyle(),
+                          ),
+                        ],
                       ),
-                      style: const TextStyle(),
-                    ),
                   ],
+                ),
+                const SizedBox(height: 20),
+                Column(
+                  children: entries.map((entry) {
+                    return DiaryCard(
+                      title: entry.title,
+                      // username: 'John Doe',
+                      username: entry.username,
+                      description: entry.description,
+                    );
+                  }).toList(),
                 ),
               ],
             ),
