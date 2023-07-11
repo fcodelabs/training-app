@@ -1,7 +1,7 @@
-import '../widgets/diary_card/diary_card_view.dart';
+import 'package:training_app/ui/widgets/diary_card/diary_card_provider.dart';
 
 class DiaryHomePageState {
-  final List<DiaryCardView> diaryList;
+  final List<DiaryCardProvider> diaryList;
   final bool addNewDiary;
 
   const DiaryHomePageState(
@@ -11,7 +11,7 @@ class DiaryHomePageState {
       const DiaryHomePageState(diaryList: [], addNewDiary: false);
 
   DiaryHomePageState clone({
-    List<DiaryCardView>? diaryList,
+    List<DiaryCardProvider>? diaryList,
     bool? addNewDiary,
   }) {
     return DiaryHomePageState(

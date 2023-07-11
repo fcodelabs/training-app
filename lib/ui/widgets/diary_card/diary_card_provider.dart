@@ -19,10 +19,10 @@ class DiaryCardProvider extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => DiaryCardBloc(),
-      child: const DiaryCardView(
-        description: 'sssssssssssssssssssssssssssssssssssssssssssssssssS',
-        title: '',
-        username: '',
+      child: DiaryCardView(
+        description: description,
+        title: title,
+        username: username,
       ),
     );
   }

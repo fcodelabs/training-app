@@ -2,10 +2,9 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:training_app/ui/diary_home_page/diary_home_page_provider.dart';
 import 'package:training_app/ui/sign_in_page/sign_in_page_event.dart';
 import 'package:training_app/ui/sign_in_page/sign_in_page_state.dart';
-
-import '../diary_home_page/diary_home_page_view.dart';
 
 class SignInPageBloc extends Bloc<SignInPageEvent, SignInPageState> {
   final TextEditingController nameController = TextEditingController();
@@ -26,7 +25,6 @@ class SignInPageBloc extends Bloc<SignInPageEvent, SignInPageState> {
       name: randomNickname,
       isEnable: true,
     ));
-    print(randomNickname);
   }
 
   void _continueToHomePage(
@@ -34,7 +32,7 @@ class SignInPageBloc extends Bloc<SignInPageEvent, SignInPageState> {
     Navigator.push(
       event.context,
       MaterialPageRoute(
-        builder: (context) => DiaryHomePageView(name: state.name),
+        builder: (context) => DiaryHomePageProvider(name: state.name),
       ),
     );
   }
