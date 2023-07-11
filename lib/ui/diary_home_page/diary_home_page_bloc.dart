@@ -10,6 +10,7 @@ class DiaryHomePageBloc extends Bloc<DiaryHomePageEvent, DiaryHomePageState> {
 
   DiaryHomePageBloc() : super(DiaryHomePageState.initialState) {
     on<SubmitDiaryCardEvent>(_addDiaryCard);
+    on<SetAddNewDiaryEvent>(_setAddNewDiary);
   }
 
   void _addDiaryCard(
@@ -24,5 +25,10 @@ class DiaryHomePageBloc extends Bloc<DiaryHomePageEvent, DiaryHomePageState> {
         ),
       ],
     ));
+  }
+
+  void _setAddNewDiary(
+      SetAddNewDiaryEvent event, Emitter<DiaryHomePageState> emit) {
+    emit(state.clone(addNewDiary: !state.addNewDiary));
   }
 }

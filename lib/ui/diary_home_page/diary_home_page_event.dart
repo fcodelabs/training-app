@@ -8,3 +8,5 @@ class SubmitDiaryCardEvent extends DiaryHomePageEvent {
   SubmitDiaryCardEvent(
       {required this.title, required this.description, required this.username});
 }
+
+class SetAddNewDiaryEvent extends DiaryHomePageEvent {}
