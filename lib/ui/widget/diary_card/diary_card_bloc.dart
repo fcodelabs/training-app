@@ -12,7 +12,6 @@ class DiaryCardBloc extends Bloc<DiaryCardEvent, DiaryCardState> {
 
   FutureOr<void> _toggleShowMoreEvent(
       ToggleShowMoreEvent event, Emitter<DiaryCardState> emit) {
-    // emit(state.clone(showMore: true));
     emit(state.clone(showMore: !state.showMore));
   }
 }
