@@ -9,8 +9,13 @@ class DiaryCardBloc extends Bloc<DiaryCardEvent, DiaryCardState> {
 
   void _showMoreButtonPressed(
       ShowMoreButtonPressed event, Emitter<DiaryCardState> emit) {
+    print(state.description.length < 10
+        ? state.description
+        : "${state.description.substring(0, 10)}...");
     emit(state.clone(
-      isPressed: !state.isPressed,
-    ));
+        isPressed: !state.isPressed,
+        description: event.description.length < 10
+            ? event.description
+            : "${event.description.substring(0, 10)}..."));
   }
 }

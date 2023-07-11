@@ -2,14 +2,15 @@ import 'dart:async';
 
 import 'package:training_app/ui/diary_home_page/diary_home_page_state.dart';
 import 'package:training_app/ui/widgets/diary_card/diary_card_provider.dart';
+import 'package:training_app/ui/widgets/diary_card/diary_card_view.dart';
 
 class DiaryBloc {
   final _diaryCardsController = StreamController<DiaryState>.broadcast();
-  final List<DiaryCardProvider> _diaryCards = [];
+  final List<DiaryCardView> _diaryCards = [];
 
   Stream<DiaryState> get diaryStateStream => _diaryCardsController.stream;
 
-  void addDiaryCard(DiaryCardProvider card) {
+  void addDiaryCard(DiaryCardView card) {
     _diaryCards.add(card);
     _diaryCardsController.sink.add(DiaryLoadedState(_diaryCards));
   }
@@ -24,7 +25,7 @@ class DiaryBloc {
       return;
     }
     addDiaryCard(
-      DiaryCardProvider(
+      DiaryCardView(
         username: 'Dasun',
         title: title,
         description: description,
