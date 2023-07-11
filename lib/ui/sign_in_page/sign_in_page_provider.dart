@@ -10,6 +10,6 @@ class SignInPageProvider extends BlocProvider<SignInPageBloc> {
   }) : super(
           key: key,
           create: (context) => SignInPageBloc(),
-          child: SignScreenView(),
+          child: const SignScreenView(),
         );
 }

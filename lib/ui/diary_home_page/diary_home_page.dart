@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../util/diary_entry.dart';
-import '../widget/diary_card/diary_card.dart';
+import '../widget/diary_card/diary_card_view.dart';
 
 class ScreenState extends StatefulWidget {
   final String textFieldValue;
@@ -258,7 +258,7 @@ class DiaryHomePage extends State<ScreenState> {
                         physics: const NeverScrollableScrollPhysics(),
                         itemCount: diaryEntries.length,
                         itemBuilder: (context, index) {
-                          return DiaryCard(
+                          return DiaryCardView(
                             title: diaryEntries[index].title,
                             username: diaryEntries[index].username,
                             description: diaryEntries[index].description,
