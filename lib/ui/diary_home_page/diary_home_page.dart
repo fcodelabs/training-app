@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:training_app/ui/diary_home_page/diary_home_page_bloc.dart';
+import 'package:training_app/ui/diary_home_page/diary_home_page_state.dart';
 import 'package:training_app/ui/widgets/diary_card/diary_card_provider.dart';
 
 class DiaryHomePage extends StatefulWidget {
@@ -201,12 +202,14 @@ class _DiaryHomePageState extends State<DiaryHomePage> {
                   ),
                 ),
               const SizedBox(height: 20),
-              StreamBuilder<List<DiaryCardProvider>>(
-                stream: _diaryBloc.diaryCardsStream,
+              StreamBuilder<DiaryState>(
+                stream: _diaryBloc.diaryStateStream,
+                initialData: DiaryInitialState(),
                 builder: (context, snapshot) {
-                  if (snapshot.hasData) {
+                  final diaryState = snapshot.data;
+                  if (diaryState is DiaryLoadedState) {
                     return Column(
-                      children: snapshot.data!,
+                      children: diaryState.diaryCards,
                     );
                   } else {
                     return const SizedBox();
