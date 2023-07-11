@@ -1,4 +1,3 @@
-import 'package:training_app/ui/widgets/diary_card/diary_card_provider.dart';
 import 'package:training_app/ui/widgets/diary_card/diary_card_view.dart';
 
 abstract class DiaryState {}

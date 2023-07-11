@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:training_app/ui/diary_home_page/diary_home_page_bloc.dart';
 import 'package:training_app/ui/diary_home_page/diary_home_page_state.dart';
-import 'package:training_app/ui/widgets/diary_card/diary_card_provider.dart';
 import 'package:training_app/ui/widgets/diary_card/diary_card_view.dart';
 
 class DiaryHomePage extends StatefulWidget {
