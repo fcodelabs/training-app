@@ -4,16 +4,27 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'diary_card_bloc.dart';
 import 'diary_card_view.dart';
 
-class SignInPageProvider extends BlocProvider<DiaryCardBloc> {
-  SignInPageProvider({
-    Key? key,
-  }) : super(
-          key: key,
-          create: (context) => DiaryCardBloc(),
-          child: const DiaryCardView(
-            title: '',
-            username: '',
-            description: '',
-          ),
-        );
+class DiaryCardProvider extends StatelessWidget {
+  final String description;
+  final String title;
+  final String username;
+
+  const DiaryCardProvider(
+      {Key? key,
+      required this.description,
+      required this.title,
+      required this.username})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => DiaryCardBloc(),
+      child: DiaryCardView(
+        description: description,
+        title: title,
+        username: username,
+      ),
+    );
+  }
 }

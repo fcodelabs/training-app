@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:training_app/ui/diary_home_page/diary_home_provider.dart';
 import 'dart:ui';
 
 import '../diary_home_page/diary_home_view.dart';
@@ -159,7 +160,7 @@ class SignScreenView extends StatelessWidget {
                                                 context,
                                                 MaterialPageRoute(
                                                   builder: (context) =>
-                                                      DiaryHomeScreen(
+                                                      DiaryHomeProvider(
                                                           textFieldValue:
                                                               textFieldValue),
                                                 ),

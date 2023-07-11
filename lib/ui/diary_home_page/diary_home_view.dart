@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:training_app/ui/widget/diary_card/diary_card_provider.dart';
 import 'package:training_app/ui/widget/diary_card/diary_card_view.dart';
 
 import 'diary_home_bloc.dart';
@@ -250,7 +251,7 @@ class DiaryHomeScreen extends StatelessWidget {
                               itemCount: state.diaryEntries.length,
                               itemBuilder: (context, index) {
                                 final entry = state.diaryEntries[index];
-                                return DiaryCardView(
+                                return DiaryCardProvider(
                                   title: entry.title,
                                   username: entry.username,
                                   description: entry.description,
