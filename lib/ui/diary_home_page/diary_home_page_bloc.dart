@@ -18,14 +18,14 @@ class DiaryBloc {
     _diaryCardsController.sink.add(AddDiaryState());
   }
 
-  void submitDiaryCard(String title, String description) {
+  void submitDiaryCard(String username, String title, String description) {
     if (title.isEmpty || description.isEmpty) {
       _diaryCardsController.sink.add(DiaryInitialState());
       return;
     }
     addDiaryCard(
       DiaryCardView(
-        username: 'Dasun',
+        username: username,
         title: title,
         description: description,
       ),

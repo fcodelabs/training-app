@@ -159,17 +159,15 @@ class _DiaryHomePageState extends State<DiaryHomePage> {
                         );
                         return;
                       }
-                      setState(() {
-                        _diaryBloc.addDiaryCard(
-                          DiaryCardView(
-                            username: 'Dasun',
-                            title: titleController.text,
-                            description: descriptionController.text,
-                          ),
-                        );
-                        titleController.clear();
-                        descriptionController.clear();
-                      });
+                      _diaryBloc.addDiaryCard(
+                        DiaryCardView(
+                          username: widget.name,
+                          title: titleController.text,
+                          description: descriptionController.text,
+                        ),
+                      );
+                      titleController.clear();
+                      descriptionController.clear();
                       print(titleController.text);
                       print(descriptionController.text);
                     },

@@ -20,11 +20,6 @@ class DiaryCardView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // String descriptionText = showMore
-    //     ? description
-    //     : description.length > 5
-    //         ? "${description.substring(0, 5)}..."
-    //         : description;
     bool showMoreOption = description.length > 5;
 
     return BlocProvider(
@@ -79,7 +74,7 @@ class DiaryCardView extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Text(
-                              showMore ? "Show less" : "Show more",
+                              state.isPressed ? "Show less" : "Show more",
                               style: const TextStyle(
                                 fontSize: 16,
                                 color: Color.fromARGB(255, 0, 0, 255),
