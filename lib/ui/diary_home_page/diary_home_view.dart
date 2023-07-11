@@ -3,73 +3,24 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:training_app/ui/diary_home_page/diary_home_bloc.dart';
+import 'package:training_app/ui/widget/diary_card/diary_card_view.dart';
 
-import '../../util/diary_entry.dart';
-import '../widget/diary_card/diary_card_view.dart';
+import 'diary_home_bloc.dart';
 import 'diary_home_event.dart';
 import 'diary_home_state.dart';
 
-class DiaryHomeScreen extends StatefulWidget {
-  final String textFieldValue;
-
-  const DiaryHomeScreen(this.textFieldValue, {Key? key}) : super(key: key);
-
-  @override
-  // ignore: no_logic_in_create_state
-  DiaryHomePage createState() => DiaryHomePage(textFieldValue);
-}
-
-class DiaryHomePage extends State<DiaryHomeScreen> {
+// ignore: must_be_immutable
+class DiaryHomeScreen extends StatelessWidget {
   final String textFieldValue;
   TextEditingController textFieldController = TextEditingController();
   TextEditingController textAreaController = TextEditingController();
-  List<DiaryEntry> diaryEntries = [];
-  // bool isInputVisible = false;
 
-  DiaryHomePage(this.textFieldValue);
-
-  @override
-  void dispose() {
-    textFieldController.dispose();
-    textAreaController.dispose();
-    super.dispose();
-  }
+  DiaryHomeScreen({super.key, required this.textFieldValue});
 
   void clear() {
     textFieldController.clear();
     textAreaController.clear();
   }
-
-  void submitData() {
-    String textFieldInput = textFieldController.text.trim();
-    String textAreaInput = textAreaController.text.trim();
-
-    if (textFieldInput.isEmpty || textAreaInput.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Title and Description cannot be empty'),
-        ),
-      );
-    } else {
-      DiaryEntry newEntry = DiaryEntry(
-        title: textFieldInput,
-        username: textFieldValue,
-        description: textAreaInput,
-      );
-      setState(() {
-        diaryEntries.add(newEntry);
-      });
-      clear();
-      // isInputVisible = false;
-    }
-  }
-
-  // void toggleInputVisibility() {
-  //   setState(() {
-  //     isInputVisible = !isInputVisible;
-  //   });
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -222,7 +173,30 @@ class DiaryHomePage extends State<DiaryHomeScreen> {
                                               Radius.circular(15)),
                                         ),
                                       ),
-                                      onPressed: submitData,
+                                      onPressed: () {
+                                        if (textFieldController.text.isEmpty ||
+                                            textAreaController.text.isEmpty) {
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            const SnackBar(
+                                              content: Text(
+                                                  'Title and Description cannot be empty'),
+                                            ),
+                                          ); // isInputVisible = false;
+                                        } else {
+                                          context.read<DiaryHomeBloc>().add(
+                                              SubmitDataEvent(
+                                                  textFieldController:
+                                                      textFieldController.text
+                                                          .trim(),
+                                                  textAreaController:
+                                                      textAreaController.text
+                                                          .trim(),
+                                                  textFieldValue:
+                                                      textFieldValue));
+                                          clear();
+                                        }
+                                      },
                                       child: Text(
                                         'SUBMIT',
                                         style: GoogleFonts.ubuntu(
@@ -273,15 +247,16 @@ class DiaryHomePage extends State<DiaryHomeScreen> {
                             ListView.builder(
                               shrinkWrap: true,
                               physics: const NeverScrollableScrollPhysics(),
-                              itemCount: diaryEntries.length,
+                              itemCount: state.diaryEntries.length,
                               itemBuilder: (context, index) {
+                                final entry = state.diaryEntries[index];
                                 return DiaryCardView(
-                                  title: diaryEntries[index].title,
-                                  username: diaryEntries[index].username,
-                                  description: diaryEntries[index].description,
+                                  title: entry.title,
+                                  username: entry.username,
+                                  description: entry.description,
                                 );
                               },
-                            ),
+                            )
                           ],
                         ),
                       ),

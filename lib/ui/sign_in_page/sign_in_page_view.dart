@@ -160,7 +160,8 @@ class SignScreenView extends StatelessWidget {
                                                 MaterialPageRoute(
                                                   builder: (context) =>
                                                       DiaryHomeScreen(
-                                                          textFieldValue),
+                                                          textFieldValue:
+                                                              textFieldValue),
                                                 ),
                                               );
                                               context
