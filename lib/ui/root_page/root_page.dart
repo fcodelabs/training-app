@@ -27,7 +27,7 @@ class DearDiaryApp extends StatelessWidget {
         child: const Scaffold(
           backgroundColor: Colors.transparent,
           body: Center(
-            child: LoginScreen(),
+            child: LoginScreenView(),
           ),
         ),
       ),
