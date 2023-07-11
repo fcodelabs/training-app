@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:training_app/ui/sign_in_page/sign_in_page_event.dart';
 import 'package:training_app/ui/sign_in_page/sign_in_page_state.dart';
 
-import '../diary_home_page/diary_home_page.dart';
+import '../diary_home_page/diary_home_page_view.dart';
 
 class SignInPageBloc extends Bloc<SignInPageEvent, SignInPageState> {
   final TextEditingController nameController = TextEditingController();
@@ -34,7 +34,7 @@ class SignInPageBloc extends Bloc<SignInPageEvent, SignInPageState> {
     Navigator.push(
       event.context,
       MaterialPageRoute(
-        builder: (context) => DiaryHomePage(name: state.name),
+        builder: (context) => DiaryHomePageView(name: state.name),
       ),
     );
   }

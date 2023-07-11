@@ -1,10 +1,10 @@
-abstract class DiaryEvent {}
+abstract class DiaryHomePageEvent {}
 
-class ToggleAddDiaryEvent extends DiaryEvent {}
-
-class SubmitDiaryCardEvent extends DiaryEvent {
+class SubmitDiaryCardEvent extends DiaryHomePageEvent {
+  final String username;
   final String title;
   final String description;
 
-  SubmitDiaryCardEvent(this.title, this.description);
+  SubmitDiaryCardEvent(
+      {required this.title, required this.description, required this.username});
 }

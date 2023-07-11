@@ -71,8 +71,6 @@ class SignInPageView extends StatelessWidget {
                           context
                               .read<SignInPageBloc>()
                               .add(SetRandomNicknameEvent());
-                          // nicknameController.text =
-                          //     context.read<SignInPageBloc>().state.name;
                         },
                         style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all(

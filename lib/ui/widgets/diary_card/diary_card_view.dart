@@ -68,7 +68,7 @@ class DiaryCardView extends StatelessWidget {
                         onTap: () {
                           context
                               .read<DiaryCardBloc>()
-                              .add(ShowMoreButtonPressed(description));
+                              .add(ShowMoreButtonPressed());
                         },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,

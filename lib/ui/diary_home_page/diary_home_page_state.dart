@@ -1,13 +1,18 @@
-import 'package:training_app/ui/widgets/diary_card/diary_card_view.dart';
+import '../widgets/diary_card/diary_card_view.dart';
 
-abstract class DiaryState {}
+class DiaryHomePageState {
+  final List<DiaryCardView> diaryList;
 
-class DiaryInitialState extends DiaryState {}
+  const DiaryHomePageState({required this.diaryList});
 
-class AddDiaryState extends DiaryState {}
+  static DiaryHomePageState get initialState =>
+      const DiaryHomePageState(diaryList: []);
 
-class DiaryLoadedState extends DiaryState {
-  final List<DiaryCardView> diaryCards;
-
-  DiaryLoadedState(this.diaryCards);
+  DiaryHomePageState clone({
+    List<DiaryCardView>? diaryList,
+  }) {
+    return DiaryHomePageState(
+      diaryList: diaryList ?? this.diaryList,
+    );
+  }
 }
