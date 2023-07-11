@@ -62,10 +62,10 @@ class _SignInForm extends State<LoginScreen> {
                 fit: BoxFit.cover,
               ),
             ),
-            child: const Scaffold(
+            child: Scaffold(
               backgroundColor: Colors.transparent,
               body: Center(
-                child: DiaryHomeScreen(),
+                child: DiaryHomeScreen(name: name),
               ),
             ),
           ),
