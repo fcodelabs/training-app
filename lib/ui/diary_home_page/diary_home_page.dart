@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:training_app/ui/widget/diary_card/diary_card.dart';
+import 'package:training_app/ui/widget/diary_card/diary_card_view.dart';
 import 'package:training_app/util/diary_card_entry.dart';
 
 class DiaryHomeScreen extends StatefulWidget {
