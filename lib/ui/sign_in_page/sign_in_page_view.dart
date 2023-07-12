@@ -13,6 +13,7 @@ class SignScreenView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // SignInPageBloc signInPageBloc = BlocProvider.of<SignInPageBloc>(context);
     return BlocProvider(
       create: (context) => SignInPageBloc(),
       child: Scaffold(
