@@ -1,16 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:training_app/model/diary.dart';
 
 class DiaryCard extends StatefulWidget {
-  final String title;
-  final String description;
-  final String username;
+  final Diary diary;
 
-  const DiaryCard({
-    Key? key,
-    required this.username,
-    required this.title,
-    required this.description,
-  }) : super(key: key);
+  const DiaryCard({Key? key, required this.diary}) : super(key: key);
 
   @override
   State<DiaryCard> createState() => _DiaryCardState();
@@ -22,11 +16,11 @@ class _DiaryCardState extends State<DiaryCard> {
   @override
   Widget build(BuildContext context) {
     String descriptionText = showMore
-        ? widget.description
-        : widget.description.length > 5
-            ? "${widget.description.substring(0, 5)}..."
-            : widget.description;
-    bool showMoreOption = widget.description.length > 5;
+        ? widget.diary.description
+        : widget.diary.description.length > 5
+            ? "${widget.diary.description.substring(0, 5)}..."
+            : widget.diary.description;
+    bool showMoreOption = widget.diary.description.length > 5;
 
     return SizedBox(
       width: double.infinity,
@@ -42,7 +36,7 @@ class _DiaryCardState extends State<DiaryCard> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                widget.title,
+                widget.diary.title,
                 style: const TextStyle(
                   fontSize: 22,
                   color: Color.fromARGB(255, 46, 46, 46),
@@ -50,7 +44,7 @@ class _DiaryCardState extends State<DiaryCard> {
               ),
               const SizedBox(height: 8),
               Text(
-                widget.username,
+                widget.diary.username,
                 style: const TextStyle(
                   fontSize: 18,
                   color: Color.fromARGB(255, 75, 75, 75),

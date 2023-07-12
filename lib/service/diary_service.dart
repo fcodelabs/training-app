@@ -12,4 +12,23 @@ class DiaryService {
       'username': username,
     });
   }
+
+  Future<void> deleteDiaryCard(String id) async {
+    await diaryCollection.doc(id).delete();
+  }
+
+  Future<void> updateDiaryCard(
+      String id, String title, String description, String username) async {
+    await diaryCollection.doc(id).update({
+      'title': title,
+      'description': description,
+      'username': username,
+    });
+  }
+
+  Future<List<QueryDocumentSnapshot>> getDiaryCards() async {
+    QuerySnapshot querySnapshot = await diaryCollection.get();
+    print(querySnapshot.docs);
+    return querySnapshot.docs;
+  }
 }

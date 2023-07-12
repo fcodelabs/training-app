@@ -10,3 +10,5 @@ class SubmitDiaryCardEvent extends DiaryHomePageEvent {
 }
 
 class SetAddNewDiaryEvent extends DiaryHomePageEvent {}
+
+class GetAllDiaryCardsEvent extends DiaryHomePageEvent {}
