@@ -21,10 +21,12 @@ class SignInPageBloc extends Bloc<SignInPageEvent, SignInPageState> {
     final randomIndex = random.nextInt(names.length);
     final randomNickname = names[randomIndex];
     nameController.text = randomNickname;
-    emit(state.clone(
-      name: randomNickname,
-      isEnable: true,
-    ));
+    emit(
+      state.clone(
+        name: randomNickname,
+        isEnable: true,
+      ),
+    );
   }
 
   void _continueToHomePage(
@@ -39,9 +41,11 @@ class SignInPageBloc extends Bloc<SignInPageEvent, SignInPageState> {
 
   void _setName(SetNameEvent event, Emitter<SignInPageState> emit) {
     nameController.text = event.name;
-    emit(state.clone(
-      name: event.name,
-      isEnable: event.name.isNotEmpty,
-    ));
+    emit(
+      state.clone(
+        name: event.name,
+        isEnable: event.name.isNotEmpty,
+      ),
+    );
   }
 }

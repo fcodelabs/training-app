@@ -23,11 +23,13 @@ class SignInPageView extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                const Text("Dear Diary",
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.white,
-                    )),
+                const Text(
+                  "Dear Diary",
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.white,
+                  ),
+                ),
                 Container(
                   padding: const EdgeInsets.all(20),
                   height: MediaQuery.of(context).size.height * 0.50,
@@ -54,22 +56,28 @@ class SignInPageView extends StatelessWidget {
                             current.name != previous.name,
                         builder: (context, state) {
                           bloc.nameController.selection =
-                              TextSelection.fromPosition(TextPosition(
-                                  offset: bloc.nameController.text.length));
+                              TextSelection.fromPosition(
+                            TextPosition(
+                                offset: bloc.nameController.text.length),
+                          );
                           return TextField(
-                              decoration: const InputDecoration(
-                                labelText: 'Your Nickname',
-                                border: OutlineInputBorder(),
-                              ),
-                              controller: bloc.nameController,
-                              onChanged: (value) =>
-                                  bloc.add(SetNameEvent(name: value)));
+                            decoration: const InputDecoration(
+                              labelText: 'Your Nickname',
+                              border: OutlineInputBorder(),
+                            ),
+                            controller: bloc.nameController,
+                            onChanged: (value) => bloc.add(
+                              SetNameEvent(name: value),
+                            ),
+                          );
                         },
                       ),
                       const SizedBox(height: 20),
                       ElevatedButton(
                         onPressed: () {
-                          bloc.add(SetRandomNicknameEvent());
+                          bloc.add(
+                            SetRandomNicknameEvent(),
+                          );
                         },
                         style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all(
@@ -96,8 +104,10 @@ class SignInPageView extends StatelessWidget {
                           builder: (context, state) {
                             return ElevatedButton(
                               onPressed: state.isEnable
-                                  ? () => bloc.add(ContinueToHomePageEvent(
-                                      name: '', context: context))
+                                  ? () => bloc.add(
+                                        ContinueToHomePageEvent(
+                                            name: '', context: context),
+                                      )
                                   : null,
                               style: ButtonStyle(
                                 backgroundColor:

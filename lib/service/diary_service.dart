@@ -28,7 +28,6 @@ class DiaryService {
 
   Future<List<QueryDocumentSnapshot>> getDiaryCards() async {
     QuerySnapshot querySnapshot = await diaryCollection.get();
-    print(querySnapshot.docs);
     return querySnapshot.docs;
   }
 }

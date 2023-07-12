@@ -9,8 +9,6 @@ import 'package:training_app/ui/diary_home_page/diary_home_page_state.dart';
 class DiaryHomePageBloc extends Bloc<DiaryHomePageEvent, DiaryHomePageState> {
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
-  CollectionReference diaryCollection =
-      FirebaseFirestore.instance.collection('diary');
 
   DiaryHomePageBloc() : super(DiaryHomePageState.initialState) {
     on<SubmitDiaryCardEvent>(_addDiaryCard);
@@ -68,8 +66,7 @@ class DiaryHomePageBloc extends Bloc<DiaryHomePageEvent, DiaryHomePageState> {
   }
 
   Future<List<Diary>> _getAllDiaryCards() async {
-    QuerySnapshot querySnapshot = await diaryCollection.get();
-    List<QueryDocumentSnapshot> docs = querySnapshot.docs;
+    List<QueryDocumentSnapshot> docs = await DiaryService().getDiaryCards();
     return docs
         .map(
           (e) => Diary(

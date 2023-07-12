@@ -13,7 +13,9 @@ class DiaryHomePageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     DiaryHomePageBloc bloc = BlocProvider.of<DiaryHomePageBloc>(context);
-    bloc.add(GetAllDiaryCardsEvent());
+    bloc.add(
+      GetAllDiaryCardsEvent(),
+    );
 
     return Scaffold(
       appBar: AppBar(
