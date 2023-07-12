@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:training_app/ui/sign_in_page/sign_in_page_bloc.dart';
-import 'package:training_app/ui/sign_in_page/sign_in_page_view.dart';
+import 'package:training_app/ui/sign_in_page/sign_in_page_provider.dart';
 
 class DearDiaryApp extends StatelessWidget {
   const DearDiaryApp({super.key});
@@ -14,10 +12,7 @@ class DearDiaryApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: BlocProvider(
-        create: (context) => SignInPageBloc(),
-        child: const SignScreenView(),
-      ),
+      home: SignInPageProvider(),
     );
   }
 }

@@ -11,15 +11,10 @@ class SignInPageBloc extends Bloc<SignInPageEvent, SignInPageState> {
 
   SignInPageBloc() : super(SignInPageState.initialState) {
     on<ChangeValueEvent>(_changeValueEvent);
-    on<ContinueEvent>(_continueEvent);
     on<SetTextFieldValue>(_setTextFieldValue);
     on<GenerateRandomNameEvent>(_generateRandomNameEvent);
   }
 
-  void _continueEvent(
-    ContinueEvent event,
-    Emitter<SignInPageState> emit,
-  ) {}
 
   void _setTextFieldValue(
     SetTextFieldValue event,
