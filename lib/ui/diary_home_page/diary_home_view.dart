@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../widget/diary_card/diary_card_view.dart';
+import '../../util/diary_entry.dart';
+import '../widget/diary_card_view.dart';
 import 'diary_home_bloc.dart';
 import 'diary_home_event.dart';
 import 'diary_home_state.dart';
@@ -22,8 +23,18 @@ class DiaryHomeScreen extends StatelessWidget {
     textAreaController.clear();
   }
 
+  Widget _buildDiaryCardView(DiaryEntry entry) {
+    return DiaryCardView(
+      title: entry.title,
+      username: entry.username,
+      description: entry.description,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    DiaryHomeBloc diaryHomeBloc = context.read<DiaryHomeBloc>();
+    
     return BlocProvider(
       create: (context) => DiaryHomeBloc(),
       child: Scaffold(
@@ -31,6 +42,8 @@ class DiaryHomeScreen extends StatelessWidget {
           title: const Text('Home Screen'),
         ),
         body: BlocBuilder<DiaryHomeBloc, DiaryHomeState>(
+          buildWhen: (previous, current) =>
+              previous.isInputVisible != current.isInputVisible,
           builder: (context, state) {
             return Stack(
               children: [
@@ -250,11 +263,7 @@ class DiaryHomeScreen extends StatelessWidget {
                               itemCount: state.diaryEntries.length,
                               itemBuilder: (context, index) {
                                 final entry = state.diaryEntries[index];
-                                return DiaryCardView(
-                                  title: entry.title,
-                                  username: entry.username,
-                                  description: entry.description,
-                                );
+                                return _buildDiaryCardView(entry);
                               },
                             )
                           ],
