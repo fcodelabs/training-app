@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "43579238018",
+    "project_id": "dear-diary-pahasara",
+    "storage_bucket": "dear-diary-pahasara.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:43579238018:android:21b13420a8efb124e6f69b",
+        "android_client_info": {
+          "package_name": "com.example.training_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "43579238018-beu6r2hsvgj8k7pg9ppop36se0ekhjc1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdgJ8EL37j0Oh79CqLvQmqIMIUY6woQJc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "43579238018-beu6r2hsvgj8k7pg9ppop36se0ekhjc1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "43579238018-bnl28l8snil0pav9aqmpr9l6cjq1kp5i.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.trainingApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
