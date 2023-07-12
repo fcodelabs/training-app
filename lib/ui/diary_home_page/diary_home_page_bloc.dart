@@ -26,7 +26,6 @@ class DiaryHomeScreenBloc
   ) {
     final title = state.titleController.text.trim();
     final description = state.descriptionController.text.trim();
-    // final username = state.username.trim();
     final username = event.username.trim();
     
 
