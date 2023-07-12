@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:training_app/ui/diary_home_page/diary_home_page.dart';
+import 'package:training_app/ui/diary_home_page/diary_home_page_view.dart';
 import 'package:training_app/ui/login_page/login_page_bloc.dart';
 import 'package:training_app/ui/login_page/login_page_event.dart';
 import 'package:training_app/ui/login_page/login_page_state.dart';
@@ -31,7 +31,7 @@ class LoginScreenView extends StatelessWidget {
             child: Scaffold(
               backgroundColor: Colors.transparent,
               body: Center(
-                child: DiaryHomeScreen(name: name),
+                child: DiaryHomeScreenView(name: name),
               ),
             ),
           ),
