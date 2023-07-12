@@ -9,7 +9,3 @@ Future<void> main() async {
 
   runApp(const DearDiaryApp());
 }
-
-// void main() {
-//   runApp(const DearDiaryApp());
-// }
