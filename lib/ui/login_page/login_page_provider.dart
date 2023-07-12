@@ -9,7 +9,7 @@ class LoginPageProvider extends BlocProvider<LoginPageBloc> {
     Key? key,
   }) : super(
           key: key,
-          create: (context) => LoginPageBloc(),
-          child: const LoginScreenView(),
+          create: (context) => LoginPageBloc(tempNameController: TextEditingController()),
+          child: LoginScreenView(),
         );
 }

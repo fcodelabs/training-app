@@ -4,7 +4,7 @@ import 'package:training_app/ui/diary_home_page/diary_home_page_event.dart';
 import 'package:training_app/ui/diary_home_page/diary_home_page_state.dart';
 
 class DiaryHomeScreenBloc
-    extends Bloc<DiaryHomeScreenEvent, DiaryHomeScreenState> {
+   extends Bloc<DiaryHomeScreenEvent, DiaryHomeScreenState> {
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
 
@@ -24,8 +24,8 @@ class DiaryHomeScreenBloc
     SubmitButtonPressed event,
     Emitter<DiaryHomeScreenState> emit,
   ) {
-    final title = state.titleController.text.trim();
-    final description = state.descriptionController.text.trim();
+    final title = state.title.text.trim();
+    final description = state.description.text.trim();
     final username = event.username.trim();
     
 
@@ -37,8 +37,8 @@ print('title name user: $username');
         entries: [...state.entries, newCardEntry],
         isSubmitting: false,
         username: username,
-        titleController: TextEditingController(),
-        descriptionController: TextEditingController(),
+        title: TextEditingController(),
+        description: TextEditingController(),
       ));
     }
   }

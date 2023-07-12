@@ -7,9 +7,10 @@ import 'package:training_app/ui/login_page/login_page_event.dart';
 import 'package:training_app/ui/login_page/login_page_state.dart';
 
 class LoginPageBloc extends Bloc<LoginPageEvents, LoginPageState> {
-  final TextEditingController tempNameController = TextEditingController();
+  final TextEditingController tempNameController;
 
-  LoginPageBloc() : super(LoginPageState.initialState) {
+  LoginPageBloc({required this.tempNameController})
+      : super(LoginPageState.initialState) {
     on<SetRandomTempNameEvent>(_setRandomTempName);
     on<BindChangeClickEvent>(_bindChangeClickEvent);
   }

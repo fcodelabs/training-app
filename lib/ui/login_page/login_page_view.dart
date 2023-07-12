@@ -6,7 +6,9 @@ import 'package:training_app/ui/login_page/login_page_event.dart';
 import 'package:training_app/ui/login_page/login_page_state.dart';
 
 class LoginScreenView extends StatelessWidget {
-  const LoginScreenView({Key? key}) : super(key: key);
+  final TextEditingController tempNameController = TextEditingController();
+  
+  LoginScreenView({Key? key}) : super(key: key);
 
   void navigateToDiaryHomeScreen(BuildContext context, String name) {
     Navigator.push(
@@ -43,7 +45,7 @@ class LoginScreenView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => LoginPageBloc(),
+      create: (context) => LoginPageBloc(tempNameController: tempNameController),
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Column(
@@ -86,8 +88,7 @@ class LoginScreenView extends StatelessWidget {
                           labelText: 'Your Nickname*',
                           border: OutlineInputBorder(),
                         ),
-                        controller:
-                            context.read<LoginPageBloc>().tempNameController,
+                        controller: tempNameController,
                         onChanged: (value) => context.read<LoginPageBloc>().add(
                               BindChangeClickEvent(value: value),
                             ),
@@ -105,6 +106,7 @@ class LoginScreenView extends StatelessWidget {
                           ),
                         ),
                         onPressed: () {
+                          // loginPageBloc.add(SetRandomTempNameEvent());
                           context.read<LoginPageBloc>().add(
                                 SetRandomTempNameEvent(),
                               );
@@ -121,6 +123,8 @@ class LoginScreenView extends StatelessWidget {
                   ),
                   const SizedBox(height: 20),
                   BlocBuilder<LoginPageBloc, LoginPageState>(
+                    buildWhen: (previous, current) =>
+                        previous.name != current.name,
                     builder: (context, state) {
                       return ElevatedButton(
                         style: ElevatedButton.styleFrom(

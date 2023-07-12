@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:training_app/ui/diary_home_page/diary_home_page_bloc.dart';
 import 'package:training_app/ui/diary_home_page/diary_home_page_event.dart';
 import 'package:training_app/ui/diary_home_page/diary_home_page_state.dart';
-import 'package:training_app/ui/widget/diary_card/diary_card.dart';
+import 'package:training_app/ui/widget/diary_card.dart';
 // import 'package:training_app/ui/widget/diary_card/diary_card_provider.dart';
 // import 'package:training_app/ui/widget/diary_card/diary_card_view.dart';
 
@@ -84,7 +84,7 @@ class DiaryHomeScreenView extends StatelessWidget {
                             Column(
                               children: [
                                 TextField(
-                                  controller: state.titleController,
+                                  controller: state.title,
                                   decoration: const InputDecoration(
                                     hintText: 'Title',
                                     filled: true,
@@ -95,9 +95,7 @@ class DiaryHomeScreenView extends StatelessWidget {
                                           BorderRadius.all(Radius.circular(40)),
                                       borderSide: BorderSide.none,
                                     ),
-                                    contentPadding: EdgeInsets.only(
-                                        left:
-                                            18),
+                                    contentPadding: EdgeInsets.only(left: 18),
                                     hintStyle: TextStyle(fontSize: 18),
                                   ),
                                   style: const TextStyle(),
@@ -113,9 +111,8 @@ class DiaryHomeScreenView extends StatelessWidget {
                                     ),
                                   ),
                                   onPressed: () {
-                                    if (state.titleController.text.isEmpty ||
-                                        state.descriptionController.text
-                                            .isEmpty) {
+                                    if (state.title.text.isEmpty ||
+                                        state.description.text.isEmpty) {
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(
                                         const SnackBar(
@@ -125,8 +122,7 @@ class DiaryHomeScreenView extends StatelessWidget {
                                       );
                                     } else {
                                       context.read<DiaryHomeScreenBloc>().add(
-                                          SubmitButtonPressed(
-                                              username: name));
+                                          SubmitButtonPressed(username: name));
                                     }
                                   },
                                   child: const Text(
@@ -140,7 +136,7 @@ class DiaryHomeScreenView extends StatelessWidget {
                                 ),
                                 const SizedBox(height: 20),
                                 TextField(
-                                  controller: state.descriptionController,
+                                  controller: state.description,
                                   maxLines: 5,
                                   decoration: const InputDecoration(
                                     hintText: 'Description',
@@ -152,10 +148,8 @@ class DiaryHomeScreenView extends StatelessWidget {
                                           BorderRadius.all(Radius.circular(10)),
                                       borderSide: BorderSide.none,
                                     ),
-                                    contentPadding: EdgeInsets.only(
-                                        left: 18,
-                                        top:
-                                            18),
+                                    contentPadding:
+                                        EdgeInsets.only(left: 18, top: 18),
                                     hintStyle: TextStyle(fontSize: 18),
                                   ),
                                   style: const TextStyle(),
@@ -177,15 +171,13 @@ class DiaryHomeScreenView extends StatelessWidget {
                         //     description: entry.description,
                         //   );
                         // }).toList(),
-
-                    children: state.entries.map((entry) {
-                    return DiaryCard(
-                      title: entry.title,
-                      // username: 'John Doe',
-                      username: entry.username,
-                      description: entry.description,
-                    );
-                  }).toList(),
+                        children: state.entries.map((entry) {
+                          return DiaryCard(
+                            title: entry.title,
+                            username: entry.username,
+                            description: entry.description,
+                          );
+                        }).toList(),
                       );
                     },
                   ),
