@@ -9,6 +9,8 @@ class SignInPageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SignInPageBloc bloc = BlocProvider.of<SignInPageBloc>(context);
+
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -51,28 +53,23 @@ class SignInPageView extends StatelessWidget {
                         buildWhen: (previous, current) =>
                             current.name != previous.name,
                         builder: (context, state) {
-                          final nameController =
-                              context.read<SignInPageBloc>().nameController;
-                          nameController.selection = TextSelection.fromPosition(
-                              TextPosition(offset: nameController.text.length));
+                          bloc.nameController.selection =
+                              TextSelection.fromPosition(TextPosition(
+                                  offset: bloc.nameController.text.length));
                           return TextField(
                               decoration: const InputDecoration(
                                 labelText: 'Your Nickname',
                                 border: OutlineInputBorder(),
                               ),
-                              controller:
-                                  context.read<SignInPageBloc>().nameController,
-                              onChanged: (value) => context
-                                  .read<SignInPageBloc>()
-                                  .add(SetNameEvent(name: value)));
+                              controller: bloc.nameController,
+                              onChanged: (value) =>
+                                  bloc.add(SetNameEvent(name: value)));
                         },
                       ),
                       const SizedBox(height: 20),
                       ElevatedButton(
                         onPressed: () {
-                          context
-                              .read<SignInPageBloc>()
-                              .add(SetRandomNicknameEvent());
+                          bloc.add(SetRandomNicknameEvent());
                         },
                         style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all(
@@ -94,12 +91,13 @@ class SignInPageView extends StatelessWidget {
                         width: double.infinity,
                         margin: const EdgeInsets.only(top: 30),
                         child: BlocBuilder<SignInPageBloc, SignInPageState>(
+                          buildWhen: (previous, current) =>
+                              current.isEnable != previous.isEnable,
                           builder: (context, state) {
                             return ElevatedButton(
                               onPressed: state.isEnable
-                                  ? () => context.read<SignInPageBloc>().add(
-                                      ContinueToHomePageEvent(
-                                          name: '', context: context))
+                                  ? () => bloc.add(ContinueToHomePageEvent(
+                                      name: '', context: context))
                                   : null,
                               style: ButtonStyle(
                                 backgroundColor:

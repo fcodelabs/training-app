@@ -43,7 +43,7 @@ class DiaryHomePageBloc extends Bloc<DiaryHomePageEvent, DiaryHomePageState> {
             emit(
               state.clone(
                   diaryList: await _getAllDiaryCards(), addNewDiary: false),
-            )
+            ),
           },
         )
         .catchError((error) => error);
@@ -60,7 +60,11 @@ class DiaryHomePageBloc extends Bloc<DiaryHomePageEvent, DiaryHomePageState> {
 
   void _getAllDiaryCardsEvent(
       GetAllDiaryCardsEvent event, Emitter<DiaryHomePageState> emit) async {
-    emit(state.clone(diaryList: await _getAllDiaryCards()));
+    emit(
+      state.clone(
+        diaryList: await _getAllDiaryCards(),
+      ),
+    );
   }
 
   Future<List<Diary>> _getAllDiaryCards() async {
