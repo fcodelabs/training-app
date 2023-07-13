@@ -7,6 +7,11 @@ class InputVisibleEvent extends DiaryHomeEvent {
   InputVisibleEvent();
 }
 
+class GetAllEvent extends DiaryHomeEvent {
+  GetAllEvent();
+}
+
+
 class SubmitDataEvent extends DiaryHomeEvent {
   final String textFieldValue;
   final String textFieldValueTitle;
