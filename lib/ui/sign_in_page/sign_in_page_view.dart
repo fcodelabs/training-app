@@ -82,7 +82,6 @@ class SignInPageView extends StatelessWidget {
                           bloc.add(
                             SetRandomNicknameEvent(),
                           );
-                          nameController.text = bloc.state.name;
                         },
                         style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all(
