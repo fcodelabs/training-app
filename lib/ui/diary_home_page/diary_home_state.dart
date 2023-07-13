@@ -6,38 +6,38 @@ import '../../util/diary_entry.dart';
 class DiaryHomeState {
   final bool isInputVisible;
   final String textFieldValue;
-  final String textFieldController;
-  final String textAreaController;
+  final String textFieldValueTitle;
+  final String textAreaValue;
   final List<DiaryEntry> diaryEntries;
 
   const DiaryHomeState({
     required this.isInputVisible,
     required this.textFieldValue,
-    required this.textAreaController,
-    required this.textFieldController,
+    required this.textFieldValueTitle,
+    required this.textAreaValue,
     required this.diaryEntries,
   });
 
   static DiaryHomeState get initialState => const DiaryHomeState(
         isInputVisible: false,
         textFieldValue: '',
-        textFieldController: '',
-        textAreaController: '',
+        textFieldValueTitle: '',
+        textAreaValue: '',
         diaryEntries: [],
       );
 
   DiaryHomeState clone({
     bool? isInputVisible,
     String? textFieldValue,
-    String? textFieldController,
-    String? textAreaController,
+    String? textFieldValueTitle,
+    String? textAreaValue,
     List<DiaryEntry>? diaryEntries,
   }) {
     return DiaryHomeState(
       isInputVisible: isInputVisible ?? this.isInputVisible,
       textFieldValue: textFieldValue ?? this.textFieldValue,
-      textFieldController: textFieldController ?? this.textFieldController,
-      textAreaController: textAreaController ?? this.textAreaController,
+      textFieldValueTitle: textFieldValueTitle ?? this.textFieldValueTitle,
+      textAreaValue: textAreaValue ?? this.textAreaValue,
       diaryEntries: diaryEntries ?? this.diaryEntries,
     );
   }

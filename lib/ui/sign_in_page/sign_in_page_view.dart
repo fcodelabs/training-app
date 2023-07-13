@@ -92,9 +92,8 @@ class SignScreenView extends StatelessWidget {
                                   ),
                                   const SizedBox(height: 25.0),
                                   TextField(
-                                    onChanged: (value) => context
-                                        .read<SignInPageBloc>()
-                                        .add(ChangeValueEvent()),
+                                    onChanged: (value) =>
+                                        signInPageBloc.add(ChangeValueEvent()),
                                     decoration: InputDecoration(
                                       hintText: 'Your Nickname*',
                                       border: const OutlineInputBorder(
@@ -104,9 +103,8 @@ class SignScreenView extends StatelessWidget {
                                       filled: true,
                                       fillColor: Colors.grey[200],
                                     ),
-                                    controller: context
-                                        .read<SignInPageBloc>()
-                                        .textFieldController,
+                                    controller:
+                                        signInPageBloc.textFieldController,
                                   ),
                                   const SizedBox(height: 16.0),
                                   ElevatedButton(
@@ -118,8 +116,7 @@ class SignScreenView extends StatelessWidget {
                                       ),
                                     ),
                                     onPressed: () {
-                                      context
-                                          .read<SignInPageBloc>()
+                                      signInPageBloc
                                           .add(GenerateRandomNameEvent());
                                     },
                                     child: Text(
@@ -144,16 +141,12 @@ class SignScreenView extends StatelessWidget {
                                       ),
                                     ),
                                     onPressed: state.isEnable &&
-                                            context
-                                                .read<SignInPageBloc>()
-                                                .textFieldController
-                                                .text
-                                                .isNotEmpty
+                                            signInPageBloc.textFieldController
+                                                .text.isNotEmpty
                                         ? () {
-                                            String textFieldValue = context
-                                                .read<SignInPageBloc>()
-                                                .textFieldController
-                                                .text;
+                                            String textFieldValue =
+                                                signInPageBloc
+                                                    .textFieldController.text;
 
                                             Navigator.push(
                                               context,
@@ -164,9 +157,7 @@ class SignScreenView extends StatelessWidget {
                                                             textFieldValue),
                                               ),
                                             );
-                                            context
-                                                .read<SignInPageBloc>()
-                                                .textFieldController
+                                            signInPageBloc.textFieldController
                                                 .clear();
                                             context.read<SignInPageBloc>().add(
                                                 SetTextFieldValue(
