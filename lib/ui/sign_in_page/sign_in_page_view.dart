@@ -4,16 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:ui';
 
-import '../diary_home_page/diary_home_page.dart';
+import '../diary_home_page/diary_home_provider.dart';
 
-class SignScreen extends StatefulWidget {
-  const SignScreen({super.key});
+class SignInPage extends StatefulWidget {
+  const SignInPage({super.key});
 
   @override
   SignInForm createState() => SignInForm();
 }
 
-class SignInForm extends State<SignScreen> {
+class SignInForm extends State<SignInPage> {
   final TextEditingController _textFieldController = TextEditingController();
   bool isEnable = false;
   void generateRandomName() {
@@ -57,9 +57,13 @@ class SignInForm extends State<SignScreen> {
             ),
           ),
           BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+            filter: ImageFilter.blur(
+                sigmaX: 5,
+                sigmaY:
+                    5), // Adjust the sigmaX and sigmaY values for the desired blur intensity
             child: Container(
-              color: Colors.black.withOpacity(0.5),
+              color:
+                  Colors.black.withOpacity(0.5), // Adjust the opacity as needed
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Column(
@@ -127,7 +131,9 @@ class SignInForm extends State<SignScreen> {
                                   filled: true,
                                   fillColor: Colors.grey[200],
                                 ),
-                                controller: _textFieldController,
+                                controller:
+                                    // TextEditingController(text: randomName)
+                                    _textFieldController,
                               ),
                               const SizedBox(height: 16.0),
                               ElevatedButton(
@@ -139,6 +145,7 @@ class SignInForm extends State<SignScreen> {
                                   ),
                                 ),
                                 onPressed: generateRandomName,
+                                // Add logic for the first button here
                                 child: Text(
                                   'RANDOM',
                                   style: GoogleFonts.ubuntu(
@@ -169,7 +176,9 @@ class SignInForm extends State<SignScreen> {
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) =>
-                                                ScreenState(textFieldValue),
+                                                DiaryHomeProvider(
+                                                    textFieldValue:
+                                                        textFieldValue),
                                           ),
                                         );
                                         _textFieldController.clear();
@@ -190,6 +199,10 @@ class SignInForm extends State<SignScreen> {
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
+                                    // Image.asset(
+                                    //   'assets/images/right-arrow.png',
+                                    //   height: 40,
+                                    // ),
                                     const Icon(Icons.arrow_forward),
                                   ],
                                 ),

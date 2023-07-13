@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class DiaryCard extends StatefulWidget {
+class DiaryCardView extends StatefulWidget {
   final String title;
   final String username;
   final String description;
 
-  const DiaryCard(
+  const DiaryCardView(
       {super.key,
       required this.title,
       required this.username,
@@ -15,7 +15,7 @@ class DiaryCard extends StatefulWidget {
   DiaryCardState createState() => DiaryCardState();
 }
 
-class DiaryCardState extends State<DiaryCard> {
+class DiaryCardState extends State<DiaryCardView> {
   bool showMore = false;
 
   @override
@@ -27,9 +27,9 @@ class DiaryCardState extends State<DiaryCard> {
 
     return Card(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0),
+        borderRadius: BorderRadius.circular(10.0), // Set border radius here
       ),
-      color: Colors.blue[200],
+      color: Colors.blue[200], // Set background color here
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -71,7 +71,7 @@ class DiaryCardState extends State<DiaryCard> {
                   style: const TextStyle(
                     color: Colors.black,
                     fontSize: 15,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.bold, // Set text color here
                     decoration: TextDecoration.underline,
                   ),
                 ),
