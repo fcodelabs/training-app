@@ -54,8 +54,7 @@ class DiaryCardState extends State<DiaryCardView> {
             padding: const EdgeInsets.all(10.0),
             child: Text(
               displayedDescription,
-              style: const TextStyle(
-                  color: Colors.black, fontSize: 15), // Set text color here
+              style: const TextStyle(color: Colors.black, fontSize: 15),
             ),
           ),
           if (widget.description.length > 100)
