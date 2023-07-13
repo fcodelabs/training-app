@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 @immutable
 class DiaryHomeScreenState {
   //Properties
-  final TextEditingController title;
-  final TextEditingController description;
+  final String title;
+  final String description;
   final List<DiaryCardEntry> entries;
   final bool isSubmitting;
   final String username;
@@ -19,18 +19,18 @@ class DiaryHomeScreenState {
   });
 
   //A static getter method initialState is defined,
-  static DiaryHomeScreenState get initialState => DiaryHomeScreenState(
-        title: TextEditingController(),
-        description: TextEditingController(),
-        entries: const [],
+  static DiaryHomeScreenState get initialState => const DiaryHomeScreenState(
+        title: '',
+        description: '',
+        entries: [],
         isSubmitting: false,
         username: '',
       );
 
 // The clone method is defined to create a copy of the current DiaryHomeScreenState instance with some optional changes It takes in optional parameters title, description, entries, isSubmitting, and username and returns a new instance of DiaryHomeScreenState. If any of the parameters are provided, they are used to create new instances of the corresponding properties; otherwise, the existing properties are used.
   DiaryHomeScreenState clone({
-    TextEditingController? title,
-    TextEditingController? description,
+    String? title,
+    String? description,
     List<DiaryCardEntry>? entries,
     bool? isSubmitting,
     String? username,

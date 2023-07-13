@@ -1,13 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:training_app/ui/diary_home_page/diary_home_page_event.dart';
 import 'package:training_app/ui/diary_home_page/diary_home_page_state.dart';
 
 class DiaryHomeScreenBloc
-   extends Bloc<DiaryHomeScreenEvent, DiaryHomeScreenState> {
-  TextEditingController titleController = TextEditingController();
-  TextEditingController descriptionController = TextEditingController();
-
+    extends Bloc<DiaryHomeScreenEvent, DiaryHomeScreenState> {
   DiaryHomeScreenBloc() : super(DiaryHomeScreenState.initialState) {
     on<SubmitNewButtonPressed>(_onSubmitNewButtonPressed);
     on<SubmitButtonPressed>(_onSubmitButtonPressed);
@@ -24,12 +20,11 @@ class DiaryHomeScreenBloc
     SubmitButtonPressed event,
     Emitter<DiaryHomeScreenState> emit,
   ) {
-    final title = state.title.text.trim();
-    final description = state.description.text.trim();
+    final title = event.title.trim();
+    final description = event.description.trim();
     final username = event.username.trim();
-    
 
-print('title name user: $username');
+    print('title name user: $username');
     if (title.isNotEmpty && description.isNotEmpty) {
       final newCardEntry = DiaryCardEntry(
           title: title, description: description, username: username);
@@ -37,8 +32,8 @@ print('title name user: $username');
         entries: [...state.entries, newCardEntry],
         isSubmitting: false,
         username: username,
-        title: TextEditingController(),
-        description: TextEditingController(),
+        title: title,
+        description: description,
       ));
     }
   }

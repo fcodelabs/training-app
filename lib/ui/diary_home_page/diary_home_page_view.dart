@@ -4,18 +4,18 @@ import 'package:training_app/ui/diary_home_page/diary_home_page_bloc.dart';
 import 'package:training_app/ui/diary_home_page/diary_home_page_event.dart';
 import 'package:training_app/ui/diary_home_page/diary_home_page_state.dart';
 import 'package:training_app/ui/widget/diary_card.dart';
-// import 'package:training_app/ui/widget/diary_card/diary_card_provider.dart';
-// import 'package:training_app/ui/widget/diary_card/diary_card_view.dart';
 
+// ignore: must_be_immutable
 class DiaryHomeScreenView extends StatelessWidget {
   final String name;
-  const DiaryHomeScreenView({Key? key, required this.name}) : super(key: key);
+  TextEditingController titleController = TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
+
+  DiaryHomeScreenView({Key? key, required this.name}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => DiaryHomeScreenBloc(),
-      child: Stack(
+      return Stack(
         children: [
           Padding(
             padding: const EdgeInsets.all(15.0),
@@ -24,6 +24,7 @@ class DiaryHomeScreenView extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   BlocBuilder<DiaryHomeScreenBloc, DiaryHomeScreenState>(
+                    buildWhen: (previous, current) => previous.isSubmitting != current.isSubmitting,
                     builder: (context, state) {
                       return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,14 +54,15 @@ class DiaryHomeScreenView extends StatelessWidget {
                                   backgroundColor: Colors.blueAccent[700],
                                   fixedSize: const Size(180, 40),
                                   shape: const RoundedRectangleBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(40)),
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(40),
+                                    ),
                                   ),
                                 ),
                                 onPressed: () {
-                                  context
-                                      .read<DiaryHomeScreenBloc>()
-                                      .add(SubmitNewButtonPressed());
+                                  context.read<DiaryHomeScreenBloc>().add(
+                                        SubmitNewButtonPressed(),
+                                      );
                                 },
                                 child: const Align(
                                   alignment: Alignment.centerLeft,
@@ -84,15 +86,16 @@ class DiaryHomeScreenView extends StatelessWidget {
                             Column(
                               children: [
                                 TextField(
-                                  controller: state.title,
+                                  controller: titleController,
                                   decoration: const InputDecoration(
                                     hintText: 'Title',
                                     filled: true,
                                     fillColor:
                                         Color.fromRGBO(31, 118, 239, 0.6),
                                     border: OutlineInputBorder(
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(40)),
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(40),
+                                      ),
                                       borderSide: BorderSide.none,
                                     ),
                                     contentPadding: EdgeInsets.only(left: 18),
@@ -106,13 +109,14 @@ class DiaryHomeScreenView extends StatelessWidget {
                                     backgroundColor: Colors.blueAccent[700],
                                     fixedSize: const Size(500, 55),
                                     shape: const RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(40)),
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(40),
+                                      ),
                                     ),
                                   ),
                                   onPressed: () {
-                                    if (state.title.text.isEmpty ||
-                                        state.description.text.isEmpty) {
+                                    if (titleController.text.isEmpty ||
+                                        descriptionController.text.isEmpty) {
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(
                                         const SnackBar(
@@ -122,7 +126,15 @@ class DiaryHomeScreenView extends StatelessWidget {
                                       );
                                     } else {
                                       context.read<DiaryHomeScreenBloc>().add(
-                                          SubmitButtonPressed(username: name));
+                                            SubmitButtonPressed(
+                                              username: name,
+                                              title: titleController.text,
+                                              description:
+                                                  descriptionController.text,
+                                            ),
+                                          );
+                                      titleController.clear();
+                                      descriptionController.clear();
                                     }
                                   },
                                   child: const Text(
@@ -136,7 +148,7 @@ class DiaryHomeScreenView extends StatelessWidget {
                                 ),
                                 const SizedBox(height: 20),
                                 TextField(
-                                  controller: state.description,
+                                  controller: descriptionController,
                                   maxLines: 5,
                                   decoration: const InputDecoration(
                                     hintText: 'Description',
@@ -144,8 +156,9 @@ class DiaryHomeScreenView extends StatelessWidget {
                                     fillColor:
                                         Color.fromRGBO(31, 118, 239, 0.6),
                                     border: OutlineInputBorder(
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(10)),
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(10),
+                                      ),
                                       borderSide: BorderSide.none,
                                     ),
                                     contentPadding:
@@ -162,22 +175,18 @@ class DiaryHomeScreenView extends StatelessWidget {
                   ),
                   const SizedBox(height: 20),
                   BlocBuilder<DiaryHomeScreenBloc, DiaryHomeScreenState>(
+                    buildWhen: (previous, current) => previous.entries != current.entries,
                     builder: (context, state) {
                       return Column(
-                        // children: state.entries.map((entry) {
-                        //     return DiaryCardProvider(
-                        //     title: entry.title,
-                        //     username: entry.username,
-                        //     description: entry.description,
-                        //   );
-                        // }).toList(),
-                        children: state.entries.map((entry) {
-                          return DiaryCard(
-                            title: entry.title,
-                            username: entry.username,
-                            description: entry.description,
-                          );
-                        }).toList(),
+                        children: state.entries.map(
+                          (entry) {
+                            return DiaryCard(
+                              title: entry.title,
+                              username: entry.username,
+                              description: entry.description,
+                            );
+                          },
+                        ).toList(),
                       );
                     },
                   ),
@@ -208,7 +217,7 @@ class DiaryHomeScreenView extends StatelessWidget {
             ),
           ),
         ],
-      ),
+      // ),
     );
   }
 }

@@ -7,5 +7,7 @@ class SubmitNewButtonPressed extends DiaryHomeScreenEvent {}
 
 class SubmitButtonPressed extends DiaryHomeScreenEvent {
   final String username;
-  SubmitButtonPressed({required this.username});
+  final String title;
+  final String description;
+  SubmitButtonPressed({required this.username, required this.title, required this.description});
 }
