@@ -197,10 +197,10 @@ class DiaryHomeScreen extends StatelessWidget {
                                         } else {
                                           context.read<DiaryHomeBloc>().add(
                                               SubmitDataEvent(
-                                                  textAreaValue:
+                                                  textFieldValueTitle:
                                                       textFieldController.text
                                                           .trim(),
-                                                  textAreaController:
+                                                  textAreaValue:
                                                       textAreaController.text
                                                           .trim(),
                                                   textFieldValue:

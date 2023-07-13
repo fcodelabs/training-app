@@ -19,12 +19,12 @@ class DiaryHomeBloc extends Bloc<DiaryHomeEvent, DiaryHomeState> {
 
   FutureOr<void> _submitDataEvent(
       SubmitDataEvent event, Emitter<DiaryHomeState> emit) {
-    String textFieldInput = event.textAreaValue.trim();
-    String textAreaInput = event.textAreaController.trim();
+    String textFieldInput = event.textFieldValueTitle.trim();
+    String textAreaInput = event.textAreaValue.trim();
 
     DiaryEntry newEntry = DiaryEntry(
       title: textFieldInput,
-      username: event.textFieldValue,
+      username: event.textFieldValueTitle,
       description: textAreaInput,
     );
     List<DiaryEntry> updatedEntries = [...state.diaryEntries, newEntry];
