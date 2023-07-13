@@ -25,6 +25,8 @@ class SignInPageView extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
+                const Icon(Icons.app_shortcut, size: 50, color: Colors.white),
+                const SizedBox(height: 10),
                 const Text(
                   "Dear Diary",
                   style: TextStyle(
@@ -34,7 +36,7 @@ class SignInPageView extends StatelessWidget {
                 ),
                 Container(
                   padding: const EdgeInsets.all(20),
-                  height: MediaQuery.of(context).size.height * 0.50,
+                  height: MediaQuery.of(context).size.height * 0.40,
                   margin:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
                   decoration: BoxDecoration(
@@ -76,7 +78,7 @@ class SignInPageView extends StatelessWidget {
                           );
                         },
                       ),
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 16),
                       ElevatedButton(
                         onPressed: () {
                           bloc.add(
@@ -85,11 +87,11 @@ class SignInPageView extends StatelessWidget {
                         },
                         style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all(
-                            const Color.fromARGB(255, 39, 115, 182),
+                            const Color.fromARGB(255, 80, 1, 136),
                           ),
                           padding: MaterialStateProperty.all(
                             const EdgeInsets.symmetric(
-                                horizontal: 20, vertical: 10),
+                                horizontal: 20, vertical: 16),
                           ),
                           shape: MaterialStateProperty.all(
                             RoundedRectangleBorder(
@@ -101,7 +103,7 @@ class SignInPageView extends StatelessWidget {
                       ),
                       Container(
                         width: double.infinity,
-                        margin: const EdgeInsets.only(top: 30),
+                        margin: const EdgeInsets.only(top: 20),
                         child: BlocBuilder<SignInPageBloc, SignInPageState>(
                           buildWhen: (previous, current) =>
                               current.isEnable != previous.isEnable,
@@ -126,13 +128,12 @@ class SignInPageView extends StatelessWidget {
                                       return const Color.fromARGB(
                                           50, 30, 149, 246);
                                     }
-                                    return const Color.fromARGB(
-                                        255, 30, 149, 246);
+                                    return Color.fromARGB(255, 4, 22, 84);
                                   },
                                 ),
                                 padding: MaterialStateProperty.all(
                                   const EdgeInsets.symmetric(
-                                      horizontal: 0, vertical: 10),
+                                      horizontal: 0, vertical: 16),
                                 ),
                                 shape: MaterialStateProperty.all(
                                   RoundedRectangleBorder(

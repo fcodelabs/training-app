@@ -190,7 +190,7 @@ class DiaryHomePageView extends StatelessWidget {
                               if (states.contains(MaterialState.disabled)) {
                                 return const Color.fromARGB(255, 177, 173, 173);
                               }
-                              return const Color.fromARGB(255, 30, 149, 246);
+                              return const Color.fromARGB(255, 93, 1, 133);
                             },
                           ),
                           padding: MaterialStateProperty.all(
