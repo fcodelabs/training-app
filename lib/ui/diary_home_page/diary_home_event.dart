@@ -21,8 +21,4 @@ class SubmitDataEvent extends DiaryHomeEvent {
       {required this.textFieldValue,
       required this.textFieldValueTitle,
       required this.textAreaValue});
-
-  void clear() {}
-
-  void toggleInputVisibility() {}
 }
