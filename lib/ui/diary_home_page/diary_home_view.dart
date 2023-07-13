@@ -35,9 +35,7 @@ class DiaryHomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     DiaryHomeBloc diaryHomeBloc = context.read<DiaryHomeBloc>();
     
-    return BlocProvider(
-      create: (context) => DiaryHomeBloc(),
-      child: Scaffold(
+    return Scaffold(
         appBar: AppBar(
           title: const Text('Home Screen'),
         ),
@@ -199,7 +197,7 @@ class DiaryHomeScreen extends StatelessWidget {
                                         } else {
                                           context.read<DiaryHomeBloc>().add(
                                               SubmitDataEvent(
-                                                  textFieldController:
+                                                  textAreaValue:
                                                       textFieldController.text
                                                           .trim(),
                                                   textAreaController:
@@ -276,7 +274,6 @@ class DiaryHomeScreen extends StatelessWidget {
             );
           },
         ),
-      ),
     );
   }
 }

@@ -9,12 +9,12 @@ class InputVisibleEvent extends DiaryHomeEvent {
 
 class SubmitDataEvent extends DiaryHomeEvent {
   final String textFieldValue;
-  final String textFieldController;
+  final String textAreaValue;
   final String textAreaController;
 
   SubmitDataEvent(
       {required this.textFieldValue,
-      required this.textFieldController,
+      required this.textAreaValue,
       required this.textAreaController});
 
   void clear() {}

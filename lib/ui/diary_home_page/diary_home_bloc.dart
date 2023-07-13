@@ -19,7 +19,7 @@ class DiaryHomeBloc extends Bloc<DiaryHomeEvent, DiaryHomeState> {
 
   FutureOr<void> _submitDataEvent(
       SubmitDataEvent event, Emitter<DiaryHomeState> emit) {
-    String textFieldInput = event.textFieldController.trim();
+    String textFieldInput = event.textAreaValue.trim();
     String textAreaInput = event.textAreaController.trim();
 
     DiaryEntry newEntry = DiaryEntry(
