@@ -154,23 +154,15 @@ class DiaryHomePageView extends StatelessWidget {
                         onPressed: () {
                           if (titleController.text.isEmpty ||
                               descriptionController.text.isEmpty) {
-                            showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return AlertDialog(
-                                  title: const Text("Error..!"),
-                                  content:
-                                      const Text("You must fill all fields..!"),
-                                  actions: [
-                                    ElevatedButton(
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      },
-                                      child: const Text("Close"),
-                                    ),
-                                  ],
-                                );
-                              },
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text(
+                                  'Please fill all fields',
+                                  textAlign: TextAlign.center,
+                                ),
+                                backgroundColor:
+                                    Color.fromARGB(255, 192, 42, 42),
+                              ),
                             );
                             return;
                           }
