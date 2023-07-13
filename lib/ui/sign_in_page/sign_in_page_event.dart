@@ -5,9 +5,8 @@ abstract class SignInPageEvent {}
 
 class ContinueToHomePageEvent extends SignInPageEvent {
   final String name;
-  final BuildContext context;
 
-  ContinueToHomePageEvent({required this.name, required this.context});
+  ContinueToHomePageEvent({required this.name});
 }
 
 class SetRandomNicknameEvent extends SignInPageEvent {

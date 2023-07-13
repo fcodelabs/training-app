@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:training_app/model/diary.dart';
+import 'package:training_app/db/model/diary.dart';
 
 class DiaryCard extends StatefulWidget {
   final Diary diary;

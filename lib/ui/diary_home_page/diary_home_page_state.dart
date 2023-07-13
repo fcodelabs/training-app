@@ -1,4 +1,4 @@
-import 'package:training_app/model/diary.dart';
+import 'package:training_app/db/model/diary.dart';
 
 class DiaryHomePageState {
   final List<Diary> diaryList;

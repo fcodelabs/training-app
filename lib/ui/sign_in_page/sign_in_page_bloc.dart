@@ -10,7 +10,6 @@ class SignInPageBloc extends Bloc<SignInPageEvent, SignInPageState> {
   final TextEditingController nameController = TextEditingController();
   SignInPageBloc() : super(SignInPageState.initialState) {
     on<SetRandomNicknameEvent>(_setRandomNickname);
-    on<ContinueToHomePageEvent>(_continueToHomePage);
     on<SetNameEvent>(_setName);
   }
 
@@ -25,16 +24,6 @@ class SignInPageBloc extends Bloc<SignInPageEvent, SignInPageState> {
       state.clone(
         name: randomNickname,
         isEnable: true,
-      ),
-    );
-  }
-
-  void _continueToHomePage(
-      ContinueToHomePageEvent event, Emitter<SignInPageState> emit) {
-    Navigator.push(
-      event.context,
-      MaterialPageRoute(
-        builder: (context) => DiaryHomePageProvider(name: state.name),
       ),
     );
   }
