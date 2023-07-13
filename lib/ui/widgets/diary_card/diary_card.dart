@@ -17,10 +17,10 @@ class _DiaryCardState extends State<DiaryCard> {
   Widget build(BuildContext context) {
     String descriptionText = showMore
         ? widget.diary.description
-        : widget.diary.description.length > 5
-            ? "${widget.diary.description.substring(0, 5)}..."
+        : widget.diary.description.length > 100
+            ? "${widget.diary.description.substring(0, 100)}..."
             : widget.diary.description;
-    bool showMoreOption = widget.diary.description.length > 5;
+    bool showMoreOption = widget.diary.description.length > 100;
 
     return SizedBox(
       width: double.infinity,

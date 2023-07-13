@@ -12,7 +12,24 @@ class SignInPageBloc extends Bloc<SignInPageEvent, SignInPageState> {
 
   void _setRandomNickname(
       SetRandomNicknameEvent event, Emitter<SignInPageState> emit) {
-    const names = ['John', 'Jane', 'Doe', 'Foo', 'Bar'];
+    const names = [
+      'John',
+      'Jane',
+      'Doe',
+      'Foo',
+      'Bar',
+      'Baz',
+      'Qux',
+      'Quux',
+      'Corge',
+      'Grault',
+      'Garply',
+      'Waldo',
+      'Fred',
+      'Plugh',
+      'Xyzzy',
+      'Thud'
+    ];
     final random = Random();
     final randomIndex = random.nextInt(names.length);
     final randomNickname = names[randomIndex];

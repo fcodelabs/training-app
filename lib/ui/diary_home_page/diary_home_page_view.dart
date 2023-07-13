@@ -23,7 +23,7 @@ class DiaryHomePageView extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromRGBO(0, 64, 255, 1),
+        backgroundColor: const Color.fromARGB(255, 10, 26, 76),
         elevation: 4,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.end,
@@ -73,7 +73,7 @@ class DiaryHomePageView extends StatelessWidget {
                   const SizedBox(height: 20),
                   Container(
                     width: double.infinity,
-                    margin: const EdgeInsets.only(top: 30),
+                    margin: const EdgeInsets.only(top: 0),
                     child: ElevatedButton(
                       onPressed: () {
                         context.read<DiaryHomePageBloc>().add(
@@ -87,7 +87,7 @@ class DiaryHomePageView extends StatelessWidget {
                             if (states.contains(MaterialState.disabled)) {
                               return const Color.fromARGB(50, 30, 149, 246);
                             }
-                            return const Color.fromARGB(255, 30, 149, 246);
+                            return const Color.fromARGB(255, 34, 36, 39);
                           },
                         ),
                         padding: MaterialStateProperty.all(
@@ -116,7 +116,7 @@ class DiaryHomePageView extends StatelessWidget {
                       decoration: const InputDecoration(
                         hintText: 'Submit New',
                         filled: true,
-                        fillColor: Color.fromARGB(47, 43, 0, 255),
+                        fillColor: Color.fromARGB(255, 124, 98, 255),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide.none,
                           borderRadius: BorderRadius.all(
@@ -132,7 +132,7 @@ class DiaryHomePageView extends StatelessWidget {
                       maxLines: 5,
                       style: const TextStyle(
                         fontSize: 16,
-                        color: Color.fromARGB(255, 255, 255, 255),
+                        color: Color.fromARGB(255, 0, 0, 0),
                       ),
                       decoration: const InputDecoration(
                         hintText: 'Enter Description',
@@ -143,7 +143,7 @@ class DiaryHomePageView extends StatelessWidget {
                           ),
                         ),
                         filled: true,
-                        fillColor: Color.fromARGB(47, 43, 0, 255),
+                        fillColor: Color.fromARGB(255, 158, 149, 255),
                       ),
                     ),
                   if (state.addNewDiary)
