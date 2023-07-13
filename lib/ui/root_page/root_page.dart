@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:training_app/ui/sign_in_page/sign_in_page_provider.dart';
+
+import '../sign_in_page/sign_in_page_view.dart';
 
 class DearDiaryApp extends StatelessWidget {
   const DearDiaryApp({super.key});
@@ -12,7 +13,7 @@ class DearDiaryApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: SignInPageProvider(),
+      home: const SignInPage(),
     );
   }
 }
