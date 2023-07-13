@@ -13,6 +13,10 @@ class DiaryHomePageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     DiaryHomePageBloc bloc = BlocProvider.of<DiaryHomePageBloc>(context);
+
+    TextEditingController titleController = TextEditingController();
+    TextEditingController descriptionController = TextEditingController();
+
     bloc.add(
       GetAllDiaryCardsEvent(),
     );
@@ -102,8 +106,7 @@ class DiaryHomePageView extends StatelessWidget {
                   const SizedBox(height: 10),
                   if (state.addNewDiary)
                     TextField(
-                      controller:
-                          context.read<DiaryHomePageBloc>().titleController,
+                      controller: titleController,
                       style: const TextStyle(
                         fontSize: 16,
                         color: Color.fromARGB(255, 255, 255, 255),
@@ -123,9 +126,7 @@ class DiaryHomePageView extends StatelessWidget {
                   const SizedBox(height: 10),
                   if (state.addNewDiary)
                     TextField(
-                      controller: context
-                          .read<DiaryHomePageBloc>()
-                          .descriptionController,
+                      controller: descriptionController,
                       maxLines: 5,
                       style: const TextStyle(
                         fontSize: 16,
@@ -149,8 +150,8 @@ class DiaryHomePageView extends StatelessWidget {
                       margin: const EdgeInsets.only(top: 30),
                       child: ElevatedButton(
                         onPressed: () {
-                          if (bloc.titleController.text.isEmpty ||
-                              bloc.descriptionController.text.isEmpty) {
+                          if (titleController.text.isEmpty ||
+                              descriptionController.text.isEmpty) {
                             showDialog(
                               context: context,
                               builder: (BuildContext context) {
@@ -173,13 +174,12 @@ class DiaryHomePageView extends StatelessWidget {
                           }
                           context.read<DiaryHomePageBloc>().add(
                                 SubmitDiaryCardEvent(
-                                    description:
-                                        bloc.descriptionController.text,
-                                    title: bloc.titleController.text,
+                                    description: descriptionController.text,
+                                    title: titleController.text,
                                     username: name),
                               );
-                          bloc.titleController.clear();
-                          bloc.descriptionController.clear();
+                          titleController.clear();
+                          descriptionController.clear();
                         },
                         style: ButtonStyle(
                           backgroundColor:
