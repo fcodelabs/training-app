@@ -24,7 +24,7 @@ class DiaryHomePageView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromRGBO(0, 64, 255, 1),
-        elevation: 0,
+        elevation: 4,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
@@ -37,6 +37,8 @@ class DiaryHomePageView extends StatelessWidget {
         ),
       ),
       body: BlocBuilder<DiaryHomePageBloc, DiaryHomePageState>(
+        buildWhen: (previous, current) =>
+            current.addNewDiary != previous.addNewDiary,
         builder: (context, state) {
           return Container(
             height: double.infinity,
@@ -217,7 +219,7 @@ class DiaryHomePageView extends StatelessWidget {
                     builder: (context, state) => state.diaryList.isEmpty
                         ? const SizedBox()
                         : SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.7,
+                            height: MediaQuery.of(context).size.height * 0.58,
                             child: SingleChildScrollView(
                               child: Column(
                                 children: state.diaryList

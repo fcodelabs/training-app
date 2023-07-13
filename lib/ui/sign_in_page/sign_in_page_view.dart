@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:training_app/ui/diary_home_page/diary_home_page_event.dart';
 import 'package:training_app/ui/diary_home_page/diary_home_page_provider.dart';
 import 'package:training_app/ui/sign_in_page/sign_in_page_bloc.dart';
 import 'package:training_app/ui/sign_in_page/sign_in_page_state.dart';
@@ -12,6 +11,7 @@ class SignInPageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SignInPageBloc bloc = BlocProvider.of<SignInPageBloc>(context);
+    final TextEditingController nameController = TextEditingController();
 
     return Scaffold(
       body: Container(
@@ -57,20 +57,25 @@ class SignInPageView extends StatelessWidget {
                         buildWhen: (previous, current) =>
                             current.name != previous.name,
                         builder: (context, state) {
-                          bloc.nameController.selection =
+                          nameController.selection =
+                              //
                               TextSelection.fromPosition(
-                            TextPosition(
-                                offset: bloc.nameController.text.length),
+                            TextPosition(offset: nameController.text.length),
+                            //
                           );
+                          nameController.text = state.name;
                           return TextField(
                             decoration: const InputDecoration(
                               labelText: 'Your Nickname',
                               border: OutlineInputBorder(),
                             ),
-                            controller: bloc.nameController,
-                            onChanged: (value) => bloc.add(
-                              SetNameEvent(name: value),
-                            ),
+                            controller: nameController,
+                            onChanged: (value) => {
+                              bloc.add(
+                                SetNameEvent(name: value),
+                              ),
+                              nameController.text = value,
+                            },
                           );
                         },
                       ),
@@ -80,6 +85,7 @@ class SignInPageView extends StatelessWidget {
                           bloc.add(
                             SetRandomNicknameEvent(),
                           );
+                          nameController.text = bloc.state.name;
                         },
                         style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all(
@@ -111,7 +117,8 @@ class SignInPageView extends StatelessWidget {
                                         MaterialPageRoute(
                                           builder: (context) =>
                                               DiaryHomePageProvider(
-                                                  name: state.name),
+                                                  name: nameController.text),
+                                          //
                                         ),
                                       )
                                   : null,

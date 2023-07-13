@@ -1,13 +1,10 @@
 import 'dart:math';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:training_app/ui/diary_home_page/diary_home_page_provider.dart';
 import 'package:training_app/ui/sign_in_page/sign_in_page_event.dart';
 import 'package:training_app/ui/sign_in_page/sign_in_page_state.dart';
 
 class SignInPageBloc extends Bloc<SignInPageEvent, SignInPageState> {
-  final TextEditingController nameController = TextEditingController();
   SignInPageBloc() : super(SignInPageState.initialState) {
     on<SetRandomNicknameEvent>(_setRandomNickname);
     on<SetNameEvent>(_setName);
@@ -19,7 +16,6 @@ class SignInPageBloc extends Bloc<SignInPageEvent, SignInPageState> {
     final random = Random();
     final randomIndex = random.nextInt(names.length);
     final randomNickname = names[randomIndex];
-    nameController.text = randomNickname;
     emit(
       state.clone(
         name: randomNickname,
@@ -28,8 +24,8 @@ class SignInPageBloc extends Bloc<SignInPageEvent, SignInPageState> {
     );
   }
 
-  void _setName(SetNameEvent event, Emitter<SignInPageState> emit) {
-    nameController.text = event.name;
+  Future<void> _setName(
+      SetNameEvent event, Emitter<SignInPageState> emit) async {
     emit(
       state.clone(
         name: event.name,
