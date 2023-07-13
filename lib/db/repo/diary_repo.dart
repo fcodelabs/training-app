@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class DiaryService {
+class DiaryRepo {
   CollectionReference diaryCollection =
       FirebaseFirestore.instance.collection('diary');
 
