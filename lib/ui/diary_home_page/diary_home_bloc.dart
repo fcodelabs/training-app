@@ -15,7 +15,7 @@ class DiaryHomeBloc extends Bloc<DiaryHomeEvent, DiaryHomeState> {
     on<GetAllEvent>(_getAllDiary);
   }
 
-  FutureOr<void> _submitDataEvent(
+  Future<void> _submitDataEvent(
       SubmitDataEvent event, Emitter<DiaryHomeState> emit) async {
     String textFieldInput = event.textFieldValueTitle.trim();
     String textAreaInput = event.textAreaValue.trim();
@@ -30,7 +30,7 @@ class DiaryHomeBloc extends Bloc<DiaryHomeEvent, DiaryHomeState> {
         state.clone(diaryEntries: await _getAllEvent(), isInputVisible: false));
   }
 
-  FutureOr<List<DiaryEntry>> _getAllEvent() async {
+  Future<List<DiaryEntry>> _getAllEvent() async {
     List<DiaryEntryModel> getAll = await _diaryRepository.getAllDiaryEntries();
     return getAll
         .map(
@@ -43,7 +43,7 @@ class DiaryHomeBloc extends Bloc<DiaryHomeEvent, DiaryHomeState> {
         .toList();
   }
 
-  FutureOr<void> _getAllDiary(
+  Future<void> _getAllDiary(
       GetAllEvent event, Emitter<DiaryHomeState> emit) async {
     emit(
       state.clone(
@@ -52,8 +52,8 @@ class DiaryHomeBloc extends Bloc<DiaryHomeEvent, DiaryHomeState> {
     );
   }
 
-  FutureOr<void> _inputVisibleEvent(
-      InputVisibleEvent event, Emitter<DiaryHomeState> emit) {
+  Future<void> _inputVisibleEvent(
+      InputVisibleEvent event, Emitter<DiaryHomeState> emit) async {
     emit(state.clone(isInputVisible: !state.isInputVisible));
   }
 }
