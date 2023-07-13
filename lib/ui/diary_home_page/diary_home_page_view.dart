@@ -76,9 +76,9 @@ class DiaryHomePageView extends StatelessWidget {
                     margin: const EdgeInsets.only(top: 0),
                     child: ElevatedButton(
                       onPressed: () {
-                        context.read<DiaryHomePageBloc>().add(
-                              SetAddNewDiaryEvent(),
-                            );
+                        bloc.add(
+                          SetAddNewDiaryEvent(),
+                        );
                       },
                       style: ButtonStyle(
                         backgroundColor:
