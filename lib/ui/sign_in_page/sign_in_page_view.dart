@@ -57,13 +57,10 @@ class SignInPageView extends StatelessWidget {
                         buildWhen: (previous, current) =>
                             current.name != previous.name,
                         builder: (context, state) {
-                          nameController.selection =
-                              //
-                              TextSelection.fromPosition(
-                            TextPosition(offset: nameController.text.length),
-                            //
-                          );
                           nameController.text = state.name;
+                          nameController.selection = TextSelection.fromPosition(
+                            TextPosition(offset: nameController.text.length),
+                          );
                           return TextField(
                             decoration: const InputDecoration(
                               labelText: 'Your Nickname',
@@ -118,7 +115,6 @@ class SignInPageView extends StatelessWidget {
                                           builder: (context) =>
                                               DiaryHomePageProvider(
                                                   name: nameController.text),
-                                          //
                                         ),
                                       )
                                   : null,
