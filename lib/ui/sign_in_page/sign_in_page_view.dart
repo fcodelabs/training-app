@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:training_app/ui/diary_home_page/diary_home_page_event.dart';
+import 'package:training_app/ui/diary_home_page/diary_home_page_provider.dart';
 import 'package:training_app/ui/sign_in_page/sign_in_page_bloc.dart';
 import 'package:training_app/ui/sign_in_page/sign_in_page_state.dart';
 import 'package:training_app/ui/sign_in_page/sign_in_page_event.dart';
@@ -104,9 +106,13 @@ class SignInPageView extends StatelessWidget {
                           builder: (context, state) {
                             return ElevatedButton(
                               onPressed: state.isEnable
-                                  ? () => bloc.add(
-                                        ContinueToHomePageEvent(
-                                            name: '', context: context),
+                                  ? () => Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              DiaryHomePageProvider(
+                                                  name: state.name),
+                                        ),
                                       )
                                   : null,
                               style: ButtonStyle(
