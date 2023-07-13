@@ -24,7 +24,7 @@ class DiaryHomeBloc extends Bloc<DiaryHomeEvent, DiaryHomeState> {
 
     DiaryEntry newEntry = DiaryEntry(
       title: textFieldInput,
-      username: event.textFieldValueTitle,
+      username: event.textFieldValue,
       description: textAreaInput,
     );
     List<DiaryEntry> updatedEntries = [...state.diaryEntries, newEntry];
