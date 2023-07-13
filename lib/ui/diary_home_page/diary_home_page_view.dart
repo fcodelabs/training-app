@@ -174,12 +174,12 @@ class DiaryHomePageView extends StatelessWidget {
                             );
                             return;
                           }
-                          context.read<DiaryHomePageBloc>().add(
-                                SubmitDiaryCardEvent(
-                                    description: descriptionController.text,
-                                    title: titleController.text,
-                                    username: name),
-                              );
+                          bloc.add(
+                            SubmitDiaryCardEvent(
+                                description: descriptionController.text,
+                                title: titleController.text,
+                                username: name),
+                          );
                           titleController.clear();
                           descriptionController.clear();
                         },
