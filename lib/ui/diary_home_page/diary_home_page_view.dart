@@ -41,14 +41,15 @@ class DiaryHomeScreenView extends StatelessWidget {
           ],
         ),
       ),
-      body: Center(
-        child: Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/img/background.jpg'),
-              fit: BoxFit.cover,
-            ),
+      body: Container(
+        height: double.infinity,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/img/background.jpg'),
+            fit: BoxFit.cover,
           ),
+        ),
+        child: Center(
           child: Padding(
             padding: const EdgeInsets.all(15.0),
             child: SingleChildScrollView(
@@ -123,7 +124,8 @@ class DiaryHomeScreenView extends StatelessWidget {
                                   decoration: const InputDecoration(
                                     hintText: 'Title',
                                     filled: true,
-                                    fillColor: Color.fromRGBO(31, 118, 239, 0.6),
+                                    fillColor:
+                                        Color.fromRGBO(31, 118, 239, 0.6),
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(40),
@@ -149,7 +151,8 @@ class DiaryHomeScreenView extends StatelessWidget {
                                   onPressed: () {
                                     if (titleController.text.isEmpty ||
                                         descriptionController.text.isEmpty) {
-                                      ScaffoldMessenger.of(context).showSnackBar(
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
                                         const SnackBar(
                                           content: Text(
                                             'Please provide both title and description.',
@@ -161,7 +164,8 @@ class DiaryHomeScreenView extends StatelessWidget {
                                         SubmitButtonPressed(
                                           username: name,
                                           title: titleController.text,
-                                          description: descriptionController.text,
+                                          description:
+                                              descriptionController.text,
                                         ),
                                       );
                                       titleController.clear();
@@ -184,7 +188,8 @@ class DiaryHomeScreenView extends StatelessWidget {
                                   decoration: const InputDecoration(
                                     hintText: 'Description',
                                     filled: true,
-                                    fillColor: Color.fromRGBO(31, 118, 239, 0.6),
+                                    fillColor:
+                                        Color.fromRGBO(31, 118, 239, 0.6),
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(10),
