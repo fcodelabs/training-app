@@ -81,8 +81,8 @@ class LoginScreenView extends StatelessWidget {
                 ),
                 const SizedBox(height: 30),
                 BlocBuilder<LoginPageBloc, LoginPageState>(
-                  // buildWhen: (previous, current) =>
-                  //     current.name != previous.name,
+                  buildWhen: (previous, current) =>
+                      current.name != previous.name,
                   builder: (context, state) {
                     tempNameController.text = state.name;
                     return TextField(
