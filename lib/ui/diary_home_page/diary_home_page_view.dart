@@ -213,9 +213,12 @@ class DiaryHomeScreenView extends StatelessWidget {
                     },
                   ),
                   const SizedBox(height: 20),
-                  BlocBuilder<DiaryHomeScreenBloc, DiaryHomeScreenState>(
-                    buildWhen: (previous, current) =>
-                        previous.entries != current.entries,
+                  BlocConsumer<DiaryHomeScreenBloc, DiaryHomeScreenState>(
+                    listener: (context, state) => {
+                      diaryHomeScreenBloc.add(
+                        GetAllDiaryCardsEntries(),
+                      )
+                    },
                     builder: (context, state) {
                       return Column(
                         children: state.entries.map(
