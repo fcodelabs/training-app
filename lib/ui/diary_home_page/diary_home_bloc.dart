@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../db/model/diary_entry.dart';
+import '../../db/model/diary_entry_model.dart';
 import '../../db/repo/diary_repository .dart';
 import '../../util/diary_entry.dart';
 import 'diary_home_event.dart';
@@ -31,16 +31,7 @@ class DiaryHomeBloc extends Bloc<DiaryHomeEvent, DiaryHomeState> {
   }
 
   Future<List<DiaryEntry>> _getAllEvent() async {
-    List<DiaryEntryModel> getAll = await _diaryRepository.getAllDiaryEntries();
-    return getAll
-        .map(
-          (e) => DiaryEntry(
-            title: e.title,
-            username: e.username,
-            description: e.description,
-          ),
-        )
-        .toList();
+    return _diaryRepository.getAllDiaryEntries();
   }
 
   Future<void> _getAllDiary(

@@ -1,3 +1,5 @@
+import 'package:training_app/db/model/diary_entry_model.dart';
+
 class DiaryEntry {
   final String title;
   final String username;
@@ -8,4 +10,6 @@ class DiaryEntry {
     required this.username,
     required this.description,
   });
+
+  static fromModel(DiaryEntryModel entry) {}
 }
