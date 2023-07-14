@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:training_app/ui/login_page/login_page_provider.dart';
 
-void main() {
-  runApp(const DearDiaryApp());
-}
-
 class DearDiaryApp extends StatelessWidget {
   const DearDiaryApp({super.key});
 

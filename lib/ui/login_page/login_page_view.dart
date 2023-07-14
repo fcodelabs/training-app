@@ -8,38 +8,6 @@ import 'package:training_app/ui/login_page/login_page_state.dart';
 class LoginScreenView extends StatelessWidget {
   const LoginScreenView({Key? key}) : super(key: key);
 
-  void navigateToDiaryHomeScreen(BuildContext context, String name) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => Scaffold(
-          appBar: AppBar(
-            leading: IconButton(
-              icon: const Icon(Icons.arrow_back),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
-          ),
-          body: Container(
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/img/background.jpg'),
-                fit: BoxFit.cover,
-              ),
-            ),
-            child: Scaffold(
-              backgroundColor: Colors.transparent,
-              body: Center(
-                child: DiaryHomeScreenProvider(name: name),
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     LoginPageBloc loginPageBloc = BlocProvider.of<LoginPageBloc>(context);
@@ -134,19 +102,14 @@ class LoginScreenView extends StatelessWidget {
                           borderRadius: BorderRadius.all(Radius.circular(40)),
                         ),
                       ),
-                      onPressed: (state.isEnable &&
-                              loginPageBloc.state.name.isNotEmpty)
-                          ? () {
-                              navigateToDiaryHomeScreen(
+                      onPressed: state.isEnable
+                          ? () => Navigator.push(
                                 context,
-                                state.name,
-                              );
-                              tempNameController.clear();
-                              loginPageBloc.state.clone(
-                                name: '',
-                                isEnable: false,
-                              );
-                            }
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      DiaryHomeScreenProvider(name: state.name),
+                                ),
+                              )
                           : null,
                       child: const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
