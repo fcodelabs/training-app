@@ -27,4 +27,6 @@ class DiaryEntryModel {
       description: data['description'],
     );
   }
+
+  static addSnapshotListener(QueryDocumentSnapshot<Object?> doc) {}
 }
