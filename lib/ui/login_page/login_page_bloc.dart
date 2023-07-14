@@ -1,25 +1,18 @@
+import 'dart:async';
 import 'dart:math';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:training_app/ui/login_page/login_page_event.dart';
 import 'package:training_app/ui/login_page/login_page_state.dart';
 
 class LoginPageBloc extends Bloc<LoginPageEvents, LoginPageState> {
-  final TextEditingController tempNameController;
-
-  LoginPageBloc({required this.tempNameController})
-      : super(LoginPageState.initialState) {
+ LoginPageBloc() : super(LoginPageState.initialState) {
     on<SetRandomTempNameEvent>(_setRandomTempName);
     on<BindChangeClickEvent>(_bindChangeClickEvent);
   }
 
-  void _setRandomTempName(
-    SetRandomTempNameEvent event,
-    Emitter<LoginPageState> emit,
-  ) {
-    List<String> names = [
+  Future<void> _setRandomTempName(SetRandomTempNameEvent event, Emitter<LoginPageState> emit) async {
+     const names = [
       'Pahasara',
       'Nimesh',
       'Sadun',
@@ -29,25 +22,25 @@ class LoginPageBloc extends Bloc<LoginPageEvents, LoginPageState> {
       'Gunawardhana',
       'Piyumantha'
     ];
+
     final random = Random();
     final index = random.nextInt(names.length);
 
-    tempNameController.text = names[index];
+    final tempName = names[index];
 
-    print('tempNameController.text: ${tempNameController.text}');
-    emit(state.clone(
-      name: tempNameController.text,
-      isEnable: true,
-    ));
+    print('User: ${tempName}');
+    emit(
+      state.clone(
+        name: tempName,
+        isEnable: true,
+      ),
+    );
   }
 
-  void _bindChangeClickEvent(
-    BindChangeClickEvent event,
-    Emitter<LoginPageState> emit,
-  ) {
+  Future<void> _bindChangeClickEvent(BindChangeClickEvent event, Emitter<LoginPageState> emit) async {
     emit(state.clone(
-      name: tempNameController.text,
-      isEnable: state.name.isNotEmpty ? true : false,
+      name:event.name,
+      isEnable: state.name.isNotEmpty,
     ));
   }
 }

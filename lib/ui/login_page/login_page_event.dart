@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 abstract class LoginPageEvents {}
 
 class BindChangeClickEvent extends LoginPageEvents {
-  final String value;
+  final String name;
 
-  BindChangeClickEvent({required this.value});
+  BindChangeClickEvent({required this.name});
 }
 
 class SetRandomTempNameEvent extends LoginPageEvents {
