@@ -12,11 +12,15 @@ class DiaryHomeScreenView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DiaryHomeScreenBloc diaryHomeScreenBloc =
+        BlocProvider.of<DiaryHomeScreenBloc>(context);
+
     TextEditingController titleController = TextEditingController();
     TextEditingController descriptionController = TextEditingController();
 
-    DiaryHomeScreenBloc diaryHomeScreenBloc =
-        BlocProvider.of<DiaryHomeScreenBloc>(context);
+    diaryHomeScreenBloc.add(
+      GetAllDiaryCardsEntries(),
+    );
 
     return Scaffold(
       appBar: AppBar(

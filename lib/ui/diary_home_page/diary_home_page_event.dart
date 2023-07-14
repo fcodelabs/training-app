@@ -11,3 +11,5 @@ class SubmitButtonPressed extends DiaryHomeScreenEvent {
   final String description;
   SubmitButtonPressed({required this.username, required this.title, required this.description});
 }
+
+class GetAllDiaryCardsEntries extends DiaryHomeScreenEvent {}
