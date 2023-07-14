@@ -4,12 +4,14 @@ class DiaryCardView extends StatefulWidget {
   final String title;
   final String username;
   final String description;
+  final Color cardColor;
 
   const DiaryCardView(
       {super.key,
       required this.title,
       required this.username,
-      required this.description});
+      required this.description,
+      required this.cardColor});
 
   @override
   DiaryCardState createState() => DiaryCardState();
@@ -29,7 +31,7 @@ class DiaryCardState extends State<DiaryCardView> {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.0), // Set border radius here
       ),
-      color: Colors.blue[200], // Set background color here
+      color: widget.cardColor, // Set background color here
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

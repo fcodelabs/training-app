@@ -24,10 +24,15 @@ class DiaryHomeScreen extends StatelessWidget {
   }
 
   Widget _buildDiaryCardView(DiaryEntry entry) {
+    Color color = entry.username == textFieldValue
+        ? Colors.blue[400]!
+        : Colors.blue[200]!;
+
     return DiaryCardView(
       title: entry.title,
       username: entry.username,
       description: entry.description,
+      cardColor: color,
     );
   }
 
