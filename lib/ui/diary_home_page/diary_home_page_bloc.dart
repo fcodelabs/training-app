@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:training_app/db/model/diary_card_entry.dart';
 import 'package:training_app/db/repo/diary_repository.dart';
@@ -45,26 +44,16 @@ class DiaryHomeScreenBloc
     }
   }
 
-  Future<List<DiaryCardEntry>> _getAllEvent() async {
-    List<QueryDocumentSnapshot> docs =
-        await _diaryRepository.getDiaryCardEntries();
-    return docs
-        .map(
-          (e) => DiaryCardEntry(
-            title: e['title'],
-            description: e['description'],
-            username: e['username'],
-          ),
-        )
-        .toList();
-  }
-
-  Future<FutureOr<void>> _getAllDiaryCardsEntries(
+  Future<void> _getAllDiaryCardsEntries(
       GetAllDiaryCardsEntries event, Emitter<DiaryHomeScreenState> emit) async {
     emit(
       state.clone(
         entries: await _getAllEvent(),
       ),
     );
+  }
+
+  Future _getAllEvent() {
+    return _diaryRepository.getDiaryCardEntries();
   }
 }
