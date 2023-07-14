@@ -103,13 +103,16 @@ class LoginScreenView extends StatelessWidget {
                         ),
                       ),
                       onPressed: state.isEnable
-                          ? () => Navigator.push(
+                          ? () {
+                              Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) =>
                                       DiaryHomeScreenProvider(name: state.name),
                                 ),
-                              )
+                              );
+                              tempNameController.clear();
+                            }
                           : null,
                       child: const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
