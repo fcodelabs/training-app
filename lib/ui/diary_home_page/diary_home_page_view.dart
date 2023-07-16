@@ -18,10 +18,6 @@ class DiaryHomeScreenView extends StatelessWidget {
     TextEditingController titleController = TextEditingController();
     TextEditingController descriptionController = TextEditingController();
 
-    diaryHomeScreenBloc.add(
-      GetAllDiaryCardsEntries(),
-    );
-
     return Scaffold(
       appBar: AppBar(
         elevation: 4,
@@ -213,12 +209,9 @@ class DiaryHomeScreenView extends StatelessWidget {
                     },
                   ),
                   const SizedBox(height: 20),
-                  BlocConsumer<DiaryHomeScreenBloc, DiaryHomeScreenState>(
-                    listener: (context, state) => {
-                      diaryHomeScreenBloc.add(
-                        GetAllDiaryCardsEntries(),
-                      )
-                    },
+                  BlocBuilder<DiaryHomeScreenBloc, DiaryHomeScreenState>(
+                    buildWhen: (previous, current) =>
+                        previous.entries != current.entries,
                     builder: (context, state) {
                       return Column(
                         children: state.entries.map(

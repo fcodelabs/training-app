@@ -14,6 +14,9 @@ class DiaryHomeScreenBloc
     on<SubmitNewButtonPressed>(_onSubmitNewButtonPressed);
     on<SubmitButtonPressed>(_onSubmitButtonPressed);
     on<GetAllDiaryCardsEntries>(_getAllDiaryCardsEntries);
+    DiaryRepository().diaryCollection.snapshots().listen((snapshot) {
+      add(GetAllDiaryCardsEntries());
+    });
   }
 
   void _onSubmitNewButtonPressed(

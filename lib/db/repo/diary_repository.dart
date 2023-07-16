@@ -6,12 +6,12 @@ import 'package:training_app/ui/diary_home_page/diary_home_page_state.dart';
 import '../model/diary_card_entry.dart';
 
 class DiaryRepository {
-  final CollectionReference _diaryCollection =
+  final CollectionReference diaryCollection =
       FirebaseFirestore.instance.collection('diary');
 
   Future<void> addDiaryCardEntry(DiaryCardEntryModel diaryCardEntry) async {
     log(diaryCardEntry.toString());
-    await _diaryCollection.add({
+    await diaryCollection.add({
       'title': diaryCardEntry.title,
       'description': diaryCardEntry.description,
       'username': diaryCardEntry.username,
@@ -19,7 +19,7 @@ class DiaryRepository {
   }
 
   Future<List<DiaryCardEntry>> getDiaryCardEntries() async {
-    QuerySnapshot querySnapshot = await _diaryCollection.get();
+    QuerySnapshot querySnapshot = await diaryCollection.get();
     return querySnapshot.docs
         .map(
           (doc) => DiaryCardEntry(
