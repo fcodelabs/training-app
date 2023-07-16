@@ -40,8 +40,6 @@ class DiaryHomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     DiaryHomeBloc diaryHomeBloc = BlocProvider.of<DiaryHomeBloc>(context);
 
-    diaryHomeBloc.add(GetAllEvent());
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Home Screen'),

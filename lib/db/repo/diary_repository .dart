@@ -1,15 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
 import 'package:training_app/util/diary_entry.dart';
 
 import '../model/diary_entry_model.dart';
 
-class DiaryRepository extends ChangeNotifier {
-  final CollectionReference _diaryCollection =
+class DiaryRepository {
+  final CollectionReference diaryCollection =
       FirebaseFirestore.instance.collection('diary_entries');
 
   Future<List<DiaryEntry>> getAllDiaryEntries() async {
-    final QuerySnapshot snapshot = await _diaryCollection.get();
+    final QuerySnapshot snapshot = await diaryCollection.get();
     return snapshot.docs
         .map(
           (doc) => DiaryEntry(
@@ -22,6 +21,6 @@ class DiaryRepository extends ChangeNotifier {
   }
 
   Future<void> saveDiaryEntry(DiaryEntryModel entry) async {
-    await _diaryCollection.add(entry.toMap());
+    await diaryCollection.add(entry.toMap());
   }
 }

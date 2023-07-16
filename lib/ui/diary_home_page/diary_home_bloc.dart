@@ -13,6 +13,9 @@ class DiaryHomeBloc extends Bloc<DiaryHomeEvent, DiaryHomeState> {
     on<InputVisibleEvent>(_inputVisibleEvent);
     on<SubmitDataEvent>(_submitDataEvent);
     on<GetAllEvent>(_getAllDiary);
+    DiaryRepository().diaryCollection.snapshots().listen((snapshot) {
+      add(GetAllEvent());
+    });
   }
 
   Future<void> _submitDataEvent(
