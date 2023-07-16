@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:training_app/ui/diary_home_page/diary_home_page_bloc.dart';
 import 'package:training_app/ui/diary_home_page/diary_home_page_event.dart';
 import 'package:training_app/ui/diary_home_page/diary_home_page_state.dart';
-import 'package:training_app/ui/widgets/diary_card/diary_card.dart';
+import 'package:training_app/ui/widgets/diary_card.dart';
 
 class DiaryHomePageView extends StatelessWidget {
   const DiaryHomePageView({super.key, required this.name});
@@ -16,10 +16,6 @@ class DiaryHomePageView extends StatelessWidget {
 
     TextEditingController titleController = TextEditingController();
     TextEditingController descriptionController = TextEditingController();
-
-    bloc.add(
-      GetAllDiaryCardsEvent(),
-    );
 
     return Scaffold(
       appBar: AppBar(
@@ -216,7 +212,8 @@ class DiaryHomePageView extends StatelessWidget {
                               child: Column(
                                 children: state.diaryList
                                     .map(
-                                      (diary) => DiaryCard(diary: diary),
+                                      (diary) =>
+                                          DiaryCard(diary: diary, name: name),
                                     )
                                     .toList(),
                               ),

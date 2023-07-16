@@ -10,25 +10,18 @@ class DiaryHomePageBloc extends Bloc<DiaryHomePageEvent, DiaryHomePageState> {
     on<SubmitDiaryCardEvent>(_addDiaryCard);
     on<SetAddNewDiaryEvent>(_setAddNewDiary);
     on<GetAllDiaryCardsEvent>(_getAllDiaryCardsEvent);
+    DiaryRepo().diaryCollection.snapshots().listen((snapshot) {
+      add(GetAllDiaryCardsEvent());
+    });
   }
 
   Future<void> _addDiaryCard(
       SubmitDiaryCardEvent event, Emitter<DiaryHomePageState> emit) async {
-    await DiaryRepo()
-        .addDiaryCard(
-          event.title,
-          event.description,
-          event.username,
-        )
-        .then(
-          (value) async => {
-            emit(
-              state.clone(
-                  diaryList: await _getAllDiaryCards(), addNewDiary: false),
-            ),
-          },
-        )
-        .catchError((error) => error);
+    await DiaryRepo().addDiaryCard(
+      event.title,
+      event.description,
+      event.username,
+    );
   }
 
   void _setAddNewDiary(
@@ -43,9 +36,7 @@ class DiaryHomePageBloc extends Bloc<DiaryHomePageEvent, DiaryHomePageState> {
   void _getAllDiaryCardsEvent(
       GetAllDiaryCardsEvent event, Emitter<DiaryHomePageState> emit) async {
     emit(
-      state.clone(
-        diaryList: await _getAllDiaryCards(),
-      ),
+      state.clone(diaryList: await _getAllDiaryCards(), addNewDiary: false),
     );
   }
 

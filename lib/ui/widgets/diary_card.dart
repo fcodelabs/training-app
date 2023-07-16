@@ -3,8 +3,13 @@ import 'package:training_app/db/model/diary.dart';
 
 class DiaryCard extends StatefulWidget {
   final Diary diary;
+  final String name;
 
-  const DiaryCard({Key? key, required this.diary}) : super(key: key);
+  const DiaryCard({
+    Key? key,
+    required this.diary,
+    required this.name,
+  }) : super(key: key);
 
   @override
   State<DiaryCard> createState() => _DiaryCardState();
@@ -26,7 +31,9 @@ class _DiaryCardState extends State<DiaryCard> {
       width: double.infinity,
       child: Card(
         elevation: 4,
-        color: const Color.fromARGB(255, 141, 204, 255),
+        color: widget.name == widget.diary.username
+            ? const Color.fromARGB(255, 0, 145, 255)
+            : const Color.fromARGB(255, 0, 179, 219),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
@@ -55,7 +62,7 @@ class _DiaryCardState extends State<DiaryCard> {
                 descriptionText,
                 style: const TextStyle(fontSize: 16),
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 8),
               if (showMoreOption)
                 InkWell(
                   onTap: () {
@@ -66,7 +73,7 @@ class _DiaryCardState extends State<DiaryCard> {
                   child: Text(
                     showMore ? 'Show Less' : 'Show More',
                     style: const TextStyle(
-                      color: Color.fromARGB(255, 34, 94, 143),
+                      color: Color.fromARGB(255, 16, 62, 100),
                       fontSize: 16,
                     ),
                   ),
