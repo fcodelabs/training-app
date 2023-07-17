@@ -1,5 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 class DiaryEntryModel {
   final String username;
   final String title;
