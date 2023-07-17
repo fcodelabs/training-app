@@ -83,6 +83,7 @@ dependencies:
 
   flutter_dotenv: ^5.1.0
   firebase_storage: ^11.2.4
+  firebase_database: ^10.2.3
 
 
 
